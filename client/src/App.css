@@ -20,3 +20,14 @@
 .App-link {
   color: #09d3ac;
 }
+
+.TrackNr {
+  width:30vw;
+}
+
+.Center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
