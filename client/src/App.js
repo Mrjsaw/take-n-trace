@@ -6,7 +6,7 @@ class App extends Component {
     data: null
   };
 
-  componentDidMount() {
+  componentDidMount() { 
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))
@@ -31,6 +31,7 @@ class App extends Component {
             <input className="TrackNr" type="text" name="tracknr" placeholder="Tracking number"/>
             <input type="submit" value="Track" />
           </form>
+          <p>{this.state.data}</p>
         </div>
       </div>
     );
