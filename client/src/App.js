@@ -26,13 +26,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Take 'n Trace</h1>
         <div className="Center">
           <form>
             <input className="TrackNr" type="text" name="tracknr" placeholder="Tracking number"/>
             <input type="submit" value="Track" />
           </form>
-          placeholder
         </div>
       </div>
     );
