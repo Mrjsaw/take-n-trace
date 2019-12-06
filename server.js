@@ -34,6 +34,27 @@ app.get('/express_backend', (req, res) => {
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
+
+/* ----------------
+* Packages
+* ----------------- */
+
+//GET all packages
+app.post('/getPackages', (req, res) => {
+  connection.query(
+      'SELECT * FROM Packages',
+      function(err, results) {
+          if(err) {
+              res.send(err);
+          }
+          else {
+              console.log(results);
+              res.send(results);
+          }
+      }
+  );
+});
+
 //GET all package information by ID
 app.post('/getPackageById', (req, res) => {
   connection.query(
@@ -63,6 +84,83 @@ app.post('/createPackage', (req, res) => {
           else{
             console.log(results);
             res.send(results);
+          }
+      }
+  );
+});
+
+//Update package
+app.post('/updatePackage', (req, res) => {
+  connection.query(
+      'UPDATE Packages SET id = ?, trackingnumber = ?, description = ?, length = ?, height = ?, width = ?, weight = ?, origin = ?, destination = ?, status = ?, type = ?, date = ?, email = ?)',
+      [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.origin, req.body.destination, req.body.status, req.body.type, req.body.date, req.body.email],
+      function(err, results, fields) {
+          if(err){
+              res.send(err);
+          }
+          else{
+            console.log(results);
+            res.send(results);
+          }
+      }
+  );
+});
+
+
+/* ----------------
+* Couriers
+* ----------------- */
+
+//GET all couriers
+app.post('/getCouriers', (req, res) => {
+  connection.query(
+      'SELECT * FROM Couriers',
+      function(err, results) {
+          if(err) {
+              res.send(err);
+          }
+          else {
+              console.log(results);
+              res.send(results);
+          }
+      }
+  );
+});
+
+//GET all courier information by ID
+app.post('/getCourierById', (req, res) => {
+  connection.query(
+      'SELECT * FROM Couriers WHERE id = ?',
+      [req.body.courierid],
+      function(err, results) {
+          if(err) {
+              res.send(err);
+          }
+          else {
+              //TODO: GET all data from reports table
+              console.log(results);
+              res.send(results);
+          }
+      }
+  );
+});
+
+
+/* ----------------
+* Invoices
+* ----------------- */
+
+//GET all invoices
+app.post('/getInvoices', (req, res) => {
+  connection.query(
+      'SELECT * FROM Invoices',
+      function(err, results) {
+          if(err) {
+              res.send(err);
+          }
+          else {
+              console.log(results);
+              res.send(results);
           }
       }
   );
