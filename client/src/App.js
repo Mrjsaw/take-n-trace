@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Form from '../components/FormComponent'
+import './App.css';
 
-class InputForm extends Component {
+class App extends Component {
   state = {
     data: null
   };
@@ -11,32 +11,29 @@ class InputForm extends Component {
     this.callBackendAPI()
       .then(res => this.setState({ data: res.express }))
       .catch(err => console.log(err));
-  };
-      // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+  }
+  // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
   callBackendAPI = async () => {
     const response = await fetch('/express_backend');
     const body = await response.json();
 
     if (response.status !== 200) {
-      throw Error(body.message) 
+      throw Error(body.message)
     }
     return body;
   };
 
   render() {
     return (
-      <div>
-          <header>
-            <h1>Parcel shipping page</h1>
-        </header>
-        <div className="container">
-          <Form/>
-          <p className="">{this.state.data}</p>
+      <div className="App">
+        <div className="Center">
+          <form>
+            <input className="TrackNr" type="text" name="tracknr" placeholder="Tracking number"/>
+            <input type="submit" value="Track" />
+          </form>
         </div>
       </div>
     );
   }
 }
-
-
-export default InputForm;
+export default App;
