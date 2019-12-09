@@ -71,6 +71,23 @@ app.post('/getPackageById', (req, res) => {
   );
 });
 
+//GET all package information by tracking number
+app.post('/getPackageByTrackingNumber', (req, res) => {
+  connection.query(
+      'SELECT status FROM Packages WHERE trackingnumber = ?',
+      [req.body.trackingnumber],
+      function(err, results) {
+          if(err) {
+              res.send(err);
+          }
+          else {
+              console.log(results);
+              res.send(results);
+          }
+      }
+  );
+});
+
 //Create package
 app.post('/createPackage', (req, res) => {
   connection.query(
