@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Card from "../components/cardComponent";
+import Card from "../components/CardDeck";
+import ShippingHeader from "../components/shippingHeader";
 
 class ShippingOptions extends Component {
   state = {
@@ -24,14 +25,19 @@ class ShippingOptions extends Component {
   };
 
   render() {
+    const backgroundStyle = {
+      background: `rgb(7, 56, 131)`,
+      backgroundColor: `linear-gradient(0deg, rgba(7,56,131,1) 0%, rgba(30,105,219,1) 100%)`
+    };
+
     return (
-      <div>
-        <header>
-          <h1>Shipping options</h1>
-        </header>
-        <div className="container">
-          <Card />
-          <p className="">{this.state.data}</p>
+      <div style={backgroundStyle}>
+        <div>
+          <ShippingHeader />
+          <div className="container">
+            <Card />
+            <p className="">{this.state.data}</p>
+          </div>
         </div>
       </div>
     );

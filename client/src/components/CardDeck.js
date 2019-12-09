@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import ShippingOptions from "../pages/shippingOptions";
 import { Card, CardDeck, Button } from "react-bootstrap";
-import EUlogo from "../images/EU.PNG";
-import Exprlogo from "../images/Express.PNG";
-import Intlogo from "../images/international.PNG";
+import EUlogo from "../img/EU.PNG";
+import Exprlogo from "../img/Express.PNG";
+import Intlogo from "../img/international.PNG";
 
 class Cards extends Component {
   constructor(props) {
@@ -11,10 +10,10 @@ class Cards extends Component {
     this.state = { data: "" };
   }
 
-  handleSubmit = event => {
-    this.setState({});
-    alert("Hello world");
-  };
+  handleSelect(plan) {
+    //Condition according to selected plan comes here...
+    console.log("Selected");
+  }
 
   render() {
     return (
@@ -43,7 +42,11 @@ class Cards extends Component {
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Button id={"btnExpress"} variant="dark">
+                  <Button
+                    onClick={this.handleSelect}
+                    id={"btnExpress"}
+                    variant="dark"
+                  >
                     SELECT
                   </Button>
                   <hr />
@@ -73,6 +76,7 @@ class Cards extends Component {
                 </Card.Body>
                 <Card.Footer>
                   <Button
+                    onClick={this.handleSelect}
                     className={"primary"}
                     id={"btnExpress"}
                     variant="primary"
@@ -105,7 +109,11 @@ class Cards extends Component {
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                  <Button id={"btnExpress"} variant="success">
+                  <Button
+                    onClick={this.handleSelect}
+                    id={"btnExpress"}
+                    variant="success"
+                  >
                     SELECT
                   </Button>
                   <hr />

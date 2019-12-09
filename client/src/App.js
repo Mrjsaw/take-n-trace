@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Card from "./components/cardComponent";
+import ShippingOptions from "./pages/shippingOptions";
 
 class App extends Component {
   state = {
@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Center">
-          <Card />
+          <ShippingOptions />
         </div>
       </div>
     );
