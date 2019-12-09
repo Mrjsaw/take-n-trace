@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import App from './App';
 import About from './pages/About'
 import Notfound from './pages/Notfound'
