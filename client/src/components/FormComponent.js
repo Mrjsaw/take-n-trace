@@ -7,18 +7,37 @@ const PersonalInfo = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form class="personal-form" onSubmit={handleSubmit}>
             <h1>Personal Information</h1>
-            <div class="col-xs-2">
-                <label for="inputName">Name</label>
-                <input type="text" class="form-control input-sm" id="inputName" placeholder="Enter name"/><br/>
+            <hr/>
+            <div class="row">
+                <div>
+                    <label for="input">Email address</label><br/>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email"/>
+                </div>
             </div>
-            <label for="input">Email address</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Enter email"/><br/>
-            <label for="inputCountry">Origin Country</label>
-            <select class="form-control" id="inputCountry">
-                <option>Belgium</option>
-            </select>
+            <div class="row">
+                <div>
+                    <label for="inputFirstName" class="col-xs-6">First name</label>
+                    <input type="text" class="form-control input-sm" id="inputFirstName" placeholder="Enter your first name"/><br/>
+                </div>
+                <div>
+                    <label for="inputLastName" class="col-xs-6">Last name</label>
+                    <input type="text" class="form-control input-sm" id="inputLastName" placeholder="Enter your last name"/><br/>
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <div class="row">
+                <div>
+                <label for="inputCountry">Origin Country</label>
+                <select class="form-control" id="inputCountry">
+                    <option>Belgium</option>
+                </select>
+                </div>
+            </div>
+      
             <label for="inputAddress">Address</label>
             <input type="text" class="form-control" id="inputAddress" placeholder="Enter address"/><br/>
             <label for="inputPostocde">Postcode</label>
@@ -32,7 +51,7 @@ const PackageInfo = () => {
     // TO BE CHANGED
     const handleSubmit = (event) => alert("Submit parcel shipping");
     return (
-        <form onSubmit={handleSubmit}>
+        <form class="package-form" onSubmit={handleSubmit}>
             <h1>Package Information</h1>
             <label for="inputDescription">Description</label>
             <input type="text" class="form-control" id="inputDescription" placeholder="Enter Description"/><br/>
