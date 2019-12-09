@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import ShippingOptions from "../pages/shippingOptions";
+import { Card, CardDeck, Button } from "react-bootstrap";
+import EUlogo from "../images/EU.PNG";
+import Exprlogo from "../images/Express.PNG";
+import Intlogo from "../images/international.PNG";
 
-class Card extends Component {
+class Cards extends Component {
   constructor(props) {
     super(props);
     this.state = { data: "" };
@@ -16,54 +20,104 @@ class Card extends Component {
     return (
       <div>
         <div>
-          <CardDeck>
-            <Card>
-              <Card.Img variant="top" src="holder.js/100px160" />
-              <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-              </Card.Footer>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="holder.js/100px160" />
-              <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                  This card has supporting text below as a natural lead-in to
-                  additional content.{" "}
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-              </Card.Footer>
-            </Card>
-            <Card>
-              <Card.Img variant="top" src="holder.js/100px160" />
-              <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This card has even longer
-                  content than the first to show that equal height action.
-                </Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-              </Card.Footer>
-            </Card>
-          </CardDeck>
-          <br />
+          <div>
+            <CardDeck>
+              <Card
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Card.Img
+                  style={{
+                    width: 50,
+                    height: 50
+                  }}
+                  src={EUlogo}
+                />
+                <Card.Body>
+                  <Card.Title>EXPRESS</Card.Title>
+                  <Card.Text>
+                    3 - 5 days <br />
+                    Starting from $9.99
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <Button id={"btnExpress"} variant="dark">
+                    SELECT
+                  </Button>
+                  <hr />
+                </Card.Footer>
+              </Card>
+              <Card
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Card.Img
+                  variant="middle"
+                  src={Exprlogo}
+                  style={{
+                    width: 50,
+                    height: 50
+                  }}
+                />
+                <Card.Body>
+                  <Card.Title>EU</Card.Title>
+                  <Card.Text>
+                    6 - 10 days
+                    <br />
+                    Starting from $29.99
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <Button
+                    className={"primary"}
+                    id={"btnExpress"}
+                    variant="primary"
+                  >
+                    SELECT
+                  </Button>
+                  <hr />
+                </Card.Footer>
+              </Card>
+              <Card
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+              >
+                <Card.Img
+                  variant="center"
+                  src={Intlogo}
+                  style={{
+                    width: 50,
+                    height: 50
+                  }}
+                />
+                <Card.Body>
+                  <Card.Title>INTERNATIONAL</Card.Title>
+                  <Card.Text>
+                    10 days or more
+                    <br />
+                    Starting from $59.99
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer>
+                  <Button id={"btnExpress"} variant="success">
+                    SELECT
+                  </Button>
+                  <hr />
+                </Card.Footer>
+              </Card>
+            </CardDeck>
+            <br />
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default Form;
+export default Cards;
