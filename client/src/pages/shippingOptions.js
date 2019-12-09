@@ -27,13 +27,14 @@ class ShippingOptions extends Component {
   render() {
     const backgroundStyle = {
       background: `rgb(7, 56, 131)`,
-      backgroundColor: `linear-gradient(0deg, rgba(7,56,131,1) 0%, rgba(30,105,219,1) 100%)`
+      backgroundColor: `linear-gradient(0deg, rgba(7,56,131,1) 0%, rgba(30,105,219,1) 100%)`,
+      height: "300px"
     };
 
     return (
       <div style={backgroundStyle}>
+        <ShippingHeader />
         <div>
-          <ShippingHeader />
           <div className="container">
             <Card />
             <p className="">{this.state.data}</p>

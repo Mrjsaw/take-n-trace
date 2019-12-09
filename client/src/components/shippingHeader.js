@@ -8,8 +8,10 @@ class ShippingHeader extends Component {
   render() {
     const headerStyle = {
       height: "65px",
-      marginBottom: "100px",
-      paddingTop: "20px"
+      marginBottom: "80px",
+      paddingTop: "30px",
+      color: "white",
+      fontFamily: "Lucida Sans"
     };
 
     return (
