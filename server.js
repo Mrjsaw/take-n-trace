@@ -74,7 +74,7 @@ app.post('/getPackageById', (req, res) => {
 //Create package
 app.post('/createPackage', (req, res) => {
   connection.query(
-      'INSERT INTO `Packages` (id, trackingnumber, description, length, height, width, weight, origin, destination, status, type, date, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO `Packages` (trackingnumber, description, length, height, width, weight, origin, destination, status, type, date, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.origin, req.body.destination, req.body.status, req.body.type, req.body.date, req.body.email],
       function(err, results, fields) {
           if(err){
