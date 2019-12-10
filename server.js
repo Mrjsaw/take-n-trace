@@ -39,7 +39,7 @@ app.get('/express_backend', (req, res) => {
 * ----------------- */
 
 //GET all packages
-app.post('/getPackages', (req, res) => {
+app.get('/getPackages', (req, res) => {
   connection.query(
       'SELECT * FROM Packages',
       function(err, results) {
@@ -55,7 +55,7 @@ app.post('/getPackages', (req, res) => {
 });
 
 //GET all package information by ID
-app.post('/getPackageById', (req, res) => {
+app.get('/getPackageById', (req, res) => {
   connection.query(
       'SELECT * FROM Packages WHERE id = ?',
       [req.body.packageid],
@@ -72,7 +72,7 @@ app.post('/getPackageById', (req, res) => {
 });
 
 //GET all package information by tracking number
-app.post('/getPackageByTrackingNumber', (req, res) => {
+app.get('/getPackageByTrackingNumber', (req, res) => {
   connection.query(
       'SELECT status FROM Packages WHERE trackingnumber = ?',
       [req.body.trackingnumber],
