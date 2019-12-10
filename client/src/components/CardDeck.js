@@ -7,7 +7,8 @@ import Intlogo from "../img/international.PNG";
 class Cards extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: "" };
+    this.state = { opened: false };
+    this.toggleBox = this.toggleBox.bind(this);
   }
 
   handleSelect(plan) {
@@ -15,7 +16,17 @@ class Cards extends Component {
     console.log("Selected");
   }
 
+  toggleBox() {
+    const { opened } = this.state;
+    this.setState({
+      opened: !opened
+    });
+  }
+
   render() {
+    var { title, children } = this.props;
+    const { opened } = this.state;
+
     const cardStyle = {
       justifyContent: "center",
       alignItems: "center"
@@ -45,13 +56,14 @@ class Cards extends Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button
-                onClick={this.handleSelect}
-                id="btnExpress"
-                variant="primary"
-              >
-                SELECT
-              </Button>
+              <div className="box">
+                <div className="boxTitle" onClick={this.toggleBox}>
+                  <Button id="btnExpress" variant="primary">
+                    SELECT
+                  </Button>
+                </div>
+                {opened && <div class="boxContent">{children}</div>}
+              </div>
               <hr />
             </Card.Footer>
           </Card>
@@ -68,7 +80,12 @@ class Cards extends Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button onClick={this.handleSelect} id="btnEU" variant="primary">
+              <Button
+                className="boxTitle"
+                onClick={this.toggleBox}
+                id="btnEU"
+                variant="primary"
+              >
                 SELECT
               </Button>
               <hr />
@@ -88,7 +105,8 @@ class Cards extends Component {
             </Card.Body>
             <Card.Footer>
               <Button
-                onClick={this.handleSelect}
+                className="boxTitle"
+                onClick={this.toggleBox}
                 id={"btnInt"}
                 variant="primary"
               >

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import ShippingOptions from "./pages/shippingOptions";
+import Form from "./components/form";
 
 class App extends Component {
   state = {
@@ -28,7 +29,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="Center">
-          <ShippingOptions />
+          <ShippingOptions>
+            <Form />
+          </ShippingOptions>
         </div>
       </div>
     );
