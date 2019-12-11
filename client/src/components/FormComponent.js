@@ -1,21 +1,6 @@
 import React, {Component} from 'react';
 const axios = require('axios');
 
-const getOrigin = () => {
-    let values = [];
-    values.push(document.getElementsByName("first")[0].value);
-    values.push(document.getElementsByName("last")[0].value);
-    values.push(document.getElementsByName("origin")[0].value);
-    values.push(document.getElementsByName("address")[0].value);
-    values.push(document.getElementsByName("postcode")[0].value);
-    values.push(document.getElementsByName("phoneNumber")[0].value);
-    return values;
-}
-
-const getDestination = () => {
-
-}
-
 const getDate = () => {
     var today = new Date();
     document.getElementsByClassName("date")[0].value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
@@ -58,6 +43,8 @@ class Form extends Component{
         e.preventDefault();
         this.state.type = "EXPRESS";
         this.state.originCountry = "BELGIUM";
+
+        document.getElementsByName("")
         this.state.destinationCountry ="BELGIUM";
 
         axios.post('/createPackage', this.state).then((res) => {
