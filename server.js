@@ -75,17 +75,10 @@ app.post('/getPackageById', (req, res) => {
 //GET all package information by tracking number
 app.post('/getPackageByTrackingNumber', (req, res) => {
   connection.query(
-<<<<<<< HEAD
       'INSERT INTO `Packages` (trackingnumber, description, length, height, width, weight, origin, destination, status, type, date, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
       [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.origin, req.body.destination, req.body.status, req.body.type, req.body.date, req.body.email],
       function(err, results, fields) {
           if(err){
-=======
-      'SELECT * FROM Packages WHERE trackingnumber = ?',
-      [req.body.trackingnumber],
-      function(err, results) {
-          if(err) {
->>>>>>> b8adac72221c6f05c8ff22fd3679f0e9b47e2916
               res.send(err);
           }
           else {
