@@ -4,6 +4,7 @@ import EUlogo from "../img/EU.PNG";
 import Exprlogo from "../img/Express.PNG";
 import Intlogo from "../img/international.PNG";
 import { Redirect } from "react-router-dom";
+import { NONAME } from "dns";
 
 class Cards extends Component {
   constructor(props) {
@@ -27,14 +28,33 @@ class Cards extends Component {
 
   };
 
-  handleSelect(plan) {
-    //Condition according to selected plan comes here...
-    console.log("Selected");
+
+textStyle ={
+  textAlign : "center"
+}
+
+
+  btnStyle = {
+     display: "inline-block",
+     padding: "0.3em 1.2em",
+     margin: "0 0.3em 0.3em 0",
+     borderRadius: "2em",
+     boxSizing: "border-box",
+     textDecoration: "none",
+     fontFamily:"Roboto,sans-serif",
+     fontWeight: "300",
+     color: "#FFFFFF",
+     backgroundColor: "#083a87",
+     textAlign: "center",
+     transition: "all 0.2s",
+     borderStyle: "none",
+     width: "120px"
   }
 
+  
+
   render() {
-    var { title, children } = this.props;
-    const { opened } = this.state;
+   
 
     const cardStyle = {
       justifyContent: "center",
@@ -53,9 +73,9 @@ class Cards extends Component {
       alignItems: "center"
     };
     return (
-      <div style={bodyStyle} className="body">
+      <div style={bodyStyle}  className="body">
         <CardDeck>
-          <Card>
+          <Card style={cardStyle}>
             <div id="btnExpress" style={cardStyle}>
               <Card.Img style={imgStyle} src={EUlogo} />
             </div>
@@ -68,20 +88,15 @@ class Cards extends Component {
             </Card.Body>
             <Card.Footer>
               <div className="buttonExpress">
-              {this.renderRedirect("Express")}
-                <Button
-                  id="btnExpress"
-                  variant="primary"
-                  onClick={this.setRedirect} 
-                >
-                  SELECT
-                </Button>
+              <form action="/plan/form" method="GET">
+                <Button variant="primary" type="submit" name="type" value="express">SELECT</Button>
+              </form>
                 
               </div>
               <hr />
             </Card.Footer>
           </Card>
-          <Card>
+          <Card style={cardStyle}>
             <div id="btnEu" style={cardStyle}>
               <Card.Img variant="middle" src={Exprlogo} style={imgStyle} />
             </div>
@@ -95,21 +110,14 @@ class Cards extends Component {
             </Card.Body>
             <Card.Footer>
               <div className="btnEu">
-              {this.renderRedirect("EU")}
-
-              <Button
-              
-                onClick={this.setRedirect}
-                id="btnEU"
-                variant="primary" 
-              >
-                SELECT
-              </Button>
+              <form action="/plan/form" method="GET">
+                <Button variant="primary" type="submit" name="type" value="eu">SELECT</Button>
+              </form>
               </div>
               <hr />
             </Card.Footer>
           </Card>
-          <Card>
+          <Card style={cardStyle}>
             <div id="btnExpress" style={cardStyle}>
               <Card.Img variant="center" src={Intlogo} style={imgStyle} />
             </div>
@@ -123,24 +131,16 @@ class Cards extends Component {
             </Card.Body>
             <Card.Footer>
               <div className = "btnInternational">
-
-              {this.renderRedirect("test")}
-
-              <Button
-                className="boxTitle"
-                onClick={this.setRedirect}
-                id={"btnInt"}
-                variant="primary"
-              >
-                SELECT
-              </Button>
+              <form action="/plan/form" method="GET">
+                <Button variant="primary" type="submit" name="type" value="international">SELECT</Button>
+              </form>
               </div>
               <hr />
             </Card.Footer>
           </Card>
         </CardDeck>
         <br />
-        <p>Our employees guarantee a very well done service.</p>
+        <p style={this.textStyle}>Our employees guarantee a very well done service.</p>
       </div>
     );
   }
