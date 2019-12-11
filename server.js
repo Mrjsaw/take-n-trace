@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3010;
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
+  connectionLimit: 10,
   host: 'dt5.ehb.be',
   user: '1920SP2TAKENTRACE',
   password: 'INGn3hY5L',
@@ -55,7 +56,7 @@ app.get('/getPackages', (req, res) => {
 });
 
 //GET all package information by ID
-app.get('/getPackageById', (req, res) => {
+app.post('/getPackageById', (req, res) => {
   connection.query(
       'SELECT * FROM Packages WHERE id = ?',
       [req.body.packageid],
@@ -72,9 +73,9 @@ app.get('/getPackageById', (req, res) => {
 });
 
 //GET all package information by tracking number
-app.get('/getPackageByTrackingNumber', (req, res) => {
+app.post('/getPackageByTrackingNumber', (req, res) => {
   connection.query(
-      'SELECT status FROM Packages WHERE trackingnumber = ?',
+      'SELECT * FROM Packages WHERE trackingnumber = ?',
       [req.body.trackingnumber],
       function(err, results) {
           if(err) {
@@ -91,25 +92,8 @@ app.get('/getPackageByTrackingNumber', (req, res) => {
 //Create package
 app.post('/createPackage', (req, res) => {
   connection.query(
-      'INSERT INTO `Packages` (id, trackingnumber, description, length, height, width, weight, origin, destination, status, type, date, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.origin, req.body.destination, req.body.status, req.body.type, req.body.date, req.body.email],
-      function(err, results, fields) {
-          if(err){
-              res.send(err);
-          }
-          else{
-            console.log(results);
-            res.send(results);
-          }
-      }
-  );
-});
-
-//Update package
-app.post('/updatePackage', (req, res) => {
-  connection.query(
-      'UPDATE Packages SET id = ?, trackingnumber = ?, description = ?, length = ?, height = ?, width = ?, weight = ?, origin = ?, destination = ?, status = ?, type = ?, date = ?, email = ?)',
-      [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.origin, req.body.destination, req.body.status, req.body.type, req.body.date, req.body.email],
+      'INSERT INTO `Packages` (id, trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, originCountry, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)',
+      [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.originName, req.body.originStreet, req.body.originNumber, req.body.originZip, req.body.originCity, req.body.originCountry, req.body.destinationName,req.body.destinationStreet, req.body.destinationNumber, req.body.destinationZip, req.body.destinationCity, req.body.destinationCountry, req.body.status, req.body.type, req.body.date, req.body.email],
       function(err, results, fields) {
           if(err){
               res.send(err);
@@ -128,7 +112,7 @@ app.post('/updatePackage', (req, res) => {
 * ----------------- */
 
 //GET all couriers
-app.post('/getCouriers', (req, res) => {
+app.get('/getCouriers', (req, res) => {
   connection.query(
       'SELECT * FROM Couriers',
       function(err, results) {
@@ -161,13 +145,29 @@ app.post('/getCourierById', (req, res) => {
   );
 });
 
+app.get('/getCourierReports', (req, res) => {
+    connection.query(
+        'SELECT * FROM Reports WHERE courierID = ?',
+        [req.body.courierid],
+        function(err, results) {
+            if(err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
+  });
+
 
 /* ----------------
 * Invoices
 * ----------------- */
 
 //GET all invoices
-app.post('/getInvoices', (req, res) => {
+app.get('/getInvoices', (req, res) => {
   connection.query(
       'SELECT * FROM Invoices',
       function(err, results) {
