@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import "./App.css";
 import Tracking from './components/Tracking'
-import './App.css';
+
 
 
 class App extends Component {
@@ -13,9 +14,12 @@ class App extends Component {
       <div>
         <div className="Center">
           <Tracking />
+
         </div>
       </div>
     );
   }
-}
+}; 
+
 export default App;
+
