@@ -3,17 +3,24 @@ import { Card, CardDeck, Button } from "react-bootstrap";
 import EUlogo from "../img/EU.PNG";
 import Exprlogo from "../img/Express.PNG";
 import Intlogo from "../img/international.PNG";
+import { withRouter } from "react-router-dom";
 
 class Cards extends Component {
   constructor(props) {
     super(props);
     this.state = { opened: false };
     this.toggleBox = this.toggleBox.bind(this);
+    this.routeChange = this.routeChange.bind(this);
   }
 
   handleSelect(plan) {
     //Condition according to selected plan comes here...
     console.log("Selected");
+  }
+
+  routeChange() {
+    let path = "./components/form.js";
+    this.props.history.push(path);
   }
 
   toggleBox() {
@@ -58,7 +65,11 @@ class Cards extends Component {
             <Card.Footer>
               <div className="box">
                 <div className="boxTitle" onClick={this.toggleBox}>
-                  <Button id="btnExpress" variant="primary">
+                  <Button
+                    id="btnExpress"
+                    variant="primary"
+                    onClick={this.routeChange}
+                  >
                     SELECT
                   </Button>
                 </div>
@@ -123,4 +134,4 @@ class Cards extends Component {
   }
 }
 
-export default Cards;
+export default withRouter(Cards);
