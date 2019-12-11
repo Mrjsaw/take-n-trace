@@ -31,7 +31,6 @@ class App extends Component {
             <input className="TrackNr" type="text" name="tracknr" placeholder="Tracking number"/>
             <input type="submit" value="Track" />
           </form>
-          <p>{this.state.data}</p>
         </div>
       </div>
     );

@@ -1,5 +1,37 @@
 .Footer {
-  text-align: center;
-  background-color: #00574b;
-  color: white;
+  color: #fff;
+  position: static;
+  background: rgb(7,56,131);
+  background: linear-gradient(0deg, rgba(7,56,131,1) 0%, rgba(30,105,219,1) 100%);
+  padding: 20px;
+}
+
+.Footer a{
+  text-decoration: none;
+  color: #fff;
+}
+
+.Footer p{
+  margin: 0;
+}
+
+nav{
+  padding: 20px;
+  background: rgb(7,56,131);
+  background: linear-gradient(0deg, rgba(7,56,131,1) 0%, rgba(30,105,219,1) 100%);
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: whi !important;
+  font-weight: 600;
+  font-size: 1.3em;
+  font-family: 'Segoe UI' !important;
+}
+
+img{
+  width: 120px;
+}
+
+a.nav-link{
+  color: #fff !important;
 }

@@ -13,9 +13,6 @@ class InputForm extends Component {
   render() {
     return (
       <div>
-          <header>
-            <h1>Parcel shipping page</h1>
-        </header>
         <div className="container">
           <Form/>
         </div>

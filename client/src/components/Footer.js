@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
     return (
         <div className="fixed-bottom Footer">
-            <h5>&copy; Take 'n Trace 2019</h5>
+             <p>Copyright &copy; Take 'n Trace | <a href="">Cookies</a> | <a href="">My Parcels</a></p>
         </div>
     );
 }
