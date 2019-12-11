@@ -19,10 +19,12 @@ class Cards extends Component {
     });
   };
 
-  renderRedirect = () => {
+
+  renderRedirect = (name) => {
     if (this.state.redirect) {
-      return <Redirect to="/form.js" />;
+      return <Redirect to={`plan/form?type=${name}`}/>;
     }
+
   };
 
   handleSelect(plan) {
@@ -46,7 +48,9 @@ class Cards extends Component {
     };
 
     const bodyStyle = {
-      height: "80px"
+      height: "80px",
+      justifyContent: "center",
+      alignItems: "center"
     };
     return (
       <div style={bodyStyle} className="body">
@@ -63,15 +67,16 @@ class Cards extends Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <div className="box">
-                {this.renderRedirect()}
+              <div className="buttonExpress">
+              {this.renderRedirect("Express")}
                 <Button
                   id="btnExpress"
                   variant="primary"
-                  onClick={this.setRedirect}
+                  onClick={this.setRedirect} 
                 >
                   SELECT
                 </Button>
+                
               </div>
               <hr />
             </Card.Footer>
@@ -89,14 +94,18 @@ class Cards extends Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
+              <div className="btnEu">
+              {this.renderRedirect("EU")}
+
               <Button
-                className="boxTitle"
-                onClick={this.toggleBox}
+              
+                onClick={this.setRedirect}
                 id="btnEU"
-                variant="primary"
+                variant="primary" 
               >
                 SELECT
               </Button>
+              </div>
               <hr />
             </Card.Footer>
           </Card>
@@ -113,14 +122,19 @@ class Cards extends Component {
               </Card.Text>
             </Card.Body>
             <Card.Footer>
+              <div className = "btnInternational">
+
+              {this.renderRedirect("test")}
+
               <Button
                 className="boxTitle"
-                onClick={this.toggleBox}
+                onClick={this.setRedirect}
                 id={"btnInt"}
                 variant="primary"
               >
                 SELECT
               </Button>
+              </div>
               <hr />
             </Card.Footer>
           </Card>
