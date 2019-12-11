@@ -6,9 +6,7 @@ import auth0Client from './Auth';
 import PackageForm from './Form.js'
 import About from './About'
 import Homepage from './Homepage'
-
-
-
+import Payment from './Payment'
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +37,7 @@ class App extends Component {
 
         <Switch>
                 <Route exact path="/" component={Homepage} />
+                <Route path="/payment" component={Payment} />
                 <Route path="/about" component={About} />
                 <Route path="/form" component={PackageForm} />
                 <Route exact path='/callback' component={Callback}/>

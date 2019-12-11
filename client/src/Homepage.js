@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+//import {Axios} from 'axios';
 
 class About extends Component {
 
+  
   render() {
     return (
         <div className="Center">

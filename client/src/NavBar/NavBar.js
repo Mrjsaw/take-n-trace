@@ -11,6 +11,9 @@ function NavBar(props) {
 
   return (
     <nav className="navbar navbar-dark bg-primary fixed-top">
+      <Link className="navbar-brand" to="/payment">
+        Payment page
+      </Link>
       <Link className="navbar-brand" to="/">
         Take n Trace
       </Link>
