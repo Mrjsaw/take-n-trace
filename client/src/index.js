@@ -8,6 +8,7 @@ import About from './pages/About'
 import Notfound from './pages/Notfound'
 import Login from './pages/Login'
 import PackageForm from './pages/Form.js'
+import shippingOptions from "./pages/shippingOptions.js";
 import Header from './components/Header'
 import * as serviceWorker from './serviceWorker';
 
@@ -17,6 +18,8 @@ const routing = (
             <Switch>
                 <Route exact path="/" component={App} />
                 <Route path="/about" component={About} />
+                <Route exact path="/plan" component={shippingOptions}/>
+                <Route path="/plan/form" component={PackageForm}/>
                 <Route path="/form" component={PackageForm} />
                 <Route path="/admin" component={Login} />
                 <Route component={Notfound} />

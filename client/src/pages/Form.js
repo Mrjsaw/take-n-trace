@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Form from "../components/FormComponent";
+import "../form.css";
+
+const axios = require("axios");
 
 class InputForm extends Component {
   state = {
@@ -11,7 +14,6 @@ class InputForm extends Component {
       <div>
         <div className="container">
           <Form />
-          <p className="">{this.state.data}</p>
         </div>
       </div>
     );
