@@ -1,7 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 I used [auth0 blog](https://auth0.com/blog/react-tutorial-building-and-securing-your-first-app/) as the source for the authorization.
 For the payment I used [fireship](https://fireship.io/lessons/paypal-checkout-frontend/)
-Further down the line it will be implemented after the you ordered a package.
+
+Further down the line it will be implemented right after you order a package.
 
 ## How to test this locally
 
