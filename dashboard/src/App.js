@@ -1,7 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import axios from 'axios';
+import Container from 'react-bootstrap/Container' 
+import Header from './Components/Header'
 import Packages from './Packages/Packages'
 import ShowPackage from './Packages/ShowPackage'
 import Couriers from './Couriers/Couriers'
@@ -26,7 +29,7 @@ export default class extends Component {
         this.setState({ couriers: res.data });
       });
   }
-  
+
   render() {
     const { packages } = this.state;
     const { couriers } = this.state;
@@ -34,22 +37,9 @@ export default class extends Component {
     return (
       <BrowserRouter>
         <Fragment>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/packages">Packages</Link>
-            </li>
-            <li>
-              <Link to="/couriers">Couriers</Link>
-            </li>
-            <li>
-              <Link to="/statistics">Statistics</Link>
-            </li>
-          </ul>
-          <hr></hr>
+          <Header/>
 
+          <Container>
           <Switch>
             <Route path="/" exact />
 
@@ -78,6 +68,7 @@ export default class extends Component {
             <Route path="/statistics" />
             <Route component={NotFound} />
           </Switch>
+          </Container>
         </Fragment>
       </BrowserRouter>
     );

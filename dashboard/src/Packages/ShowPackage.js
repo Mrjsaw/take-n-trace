@@ -1,23 +1,50 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
-const ShowPackage = ({ trackingnumber, description, length, height, width, weight, origin, destination, status, type, date, email }) => {
+const ShowPackage = ({ id, trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, originCountry, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email }) => {
 
     return (
         <Fragment>
-            <p>Date: {date}</p>
-            <p>Contact information: {email}</p>
-            <p>Tracking number: {trackingnumber}</p>
-            <p>Description: {description}</p>
-            <p>Length: {length}</p>
-            <p>Height: {height}</p>
-            <p>Width: {width}</p>
-            <p>Weight {weight}</p>
-            <p>Origin: {origin}</p>
-            <p>Destination: {destination}</p>
-            <p>Type: {type}</p>
-            <p><b>Status: {status}</b></p>
-            <Link to="/packages">Back to packages</Link>
+            <Card style={{ width: '18rem', marginTop: '20px'}} className="text-center mx-auto">
+                <Card.Header>
+                    {trackingnumber}
+                </Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        {description}
+                    </Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                <ListGroupItem></ListGroupItem>
+                <ListGroupItem>
+                        Length: {length}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Height: {height}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Width: {width}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Weight: {weight}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Status: {status}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Type: {type}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Date: {date}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                       Contact: {email}
+                    </ListGroupItem>
+                    </ListGroup>
+                <Card.Footer className="text-muted"><Card.Link href="/packages">Back to packages</Card.Link></Card.Footer>
+            </Card>
         </Fragment>
     )
 }

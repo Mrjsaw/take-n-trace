@@ -1,22 +1,31 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import Table from 'react-bootstrap/Table'
 
 const Packages = ({ match: { url }, packages }) => {
 
     return (
         <Fragment>
-            <ul>
-                {packages.map(({ id, origin, destination, status, type, date }) =>
-                    <li key={id}>
-                        <p>{id}</p>
-                        <p>{origin} -> {destination}</p>
-                        <p>{status}</p>
-                        <p>{type}</p>
-                        <p>{date.substring(0, 10)}</p>
-                        <button href=""><Link to={`${url}/${id}`}>Detail</Link></button>
-                    </li>
-                )}
-            </ul>
+            <Table responsive bordered hover style={{ marginTop: '20px' }}>
+                <thead>
+                    <tr>
+                        <th>Tracking number</th>
+                        <th>Status</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {packages.map(({ id, trackingnumber, originCountry, destinationCountry, status, type, date }) =>
+                        <tr>
+                            <td><Link to={`${url}/${id}`}>{trackingnumber}</Link></td>
+                            <td>{status}</td>
+                            <td>{type}</td>
+                            <td>{date}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </Table>
         </Fragment>
     )
 }
