@@ -1,12 +1,19 @@
-.App {
-  text-align: center;
+.container {
+  text-align: left;
+  font-family: sans-serif;
+  color: grey;
+}
+.container h1{
+  color: gray;
+  margin: 0;
+  padding: 20px 0;
 }
 
-.App-logo {
+.container-logo {
   height: 40vmin;
 }
 
-.App-header {
+.container-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -17,6 +24,17 @@
   color: white;
 }
 
-.App-link {
+.container-link {
   color: #09d3ac;
+}
+
+.TrackNr {
+  width:30vw;
+}
+
+.Center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

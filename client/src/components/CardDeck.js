@@ -3,31 +3,31 @@ import { Card, CardDeck, Button } from "react-bootstrap";
 import EUlogo from "../img/EU.PNG";
 import Exprlogo from "../img/Express.PNG";
 import Intlogo from "../img/international.PNG";
-import { withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class Cards extends Component {
   constructor(props) {
     super(props);
-    this.state = { opened: false };
-    this.toggleBox = this.toggleBox.bind(this);
-    this.routeChange = this.routeChange.bind(this);
   }
+  state = {
+    redirect: false
+  };
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    });
+  };
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to="/form.js" />;
+    }
+  };
 
   handleSelect(plan) {
     //Condition according to selected plan comes here...
     console.log("Selected");
-  }
-
-  routeChange() {
-    let path = "./components/form.js";
-    this.props.history.push(path);
-  }
-
-  toggleBox() {
-    const { opened } = this.state;
-    this.setState({
-      opened: !opened
-    });
   }
 
   render() {
@@ -64,16 +64,14 @@ class Cards extends Component {
             </Card.Body>
             <Card.Footer>
               <div className="box">
-                <div className="boxTitle" onClick={this.toggleBox}>
-                  <Button
-                    id="btnExpress"
-                    variant="primary"
-                    onClick={this.routeChange}
-                  >
-                    SELECT
-                  </Button>
-                </div>
-                {opened && <div class="boxContent">{children}</div>}
+                {this.renderRedirect()}
+                <Button
+                  id="btnExpress"
+                  variant="primary"
+                  onClick={this.setRedirect}
+                >
+                  SELECT
+                </Button>
               </div>
               <hr />
             </Card.Footer>
@@ -134,4 +132,4 @@ class Cards extends Component {
   }
 }
 
-export default withRouter(Cards);
+export default Cards;
