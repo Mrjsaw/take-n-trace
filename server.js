@@ -100,7 +100,7 @@ app.post('/getPackageByTrackingNumber', (req, res) => {
 app.post('/createPackage', (req, res) => {
   connection.query(
       'INSERT INTO `Packages` (id, trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, originCountry, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?)',
-      [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.originName, req.body.originStreet, req.body.originNumber, req.body.originZip, req.body.originCity, req.body.originCountry, req.body.destinationName,req.body.destinationStreet, req.body.destinationNumber, req.body.destinationZip, req.body.destinationCity, req.body.destinationCountry, req.body.status, req.body.type, req.body.date, req.body.email],
+      [req.body.trackingnumber, req.body.description, req.body.length, req.body.height, req.body.width, req.body.weight, req.body.originName, req.body.originStreet, req.body.originNumber, req.body.originZip, req.body.originCity, req.body.originCountry, req.body.destinationName,req.body.destinationStreet, req.body.destinationNumber, req.body.destinationZip, req.body.destinationCity, req.body.destinationCountry, "Processing", req.body.type, new Date(), req.body.email],
       function(err, results, fields) {
           if(err){
               res.send(err);
