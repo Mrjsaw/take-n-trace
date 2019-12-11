@@ -1,11 +1,13 @@
 import React from 'react';
+import './Header.css';
 import { Nav, Navbar } from 'react-bootstrap';
+import logo from '../img/take-n-trace-logo.png';
 
 const Header = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Navbar.Brand href="/">
-       Take 'n Trace
+      <img src={logo} alt="Take 'n Trace logo"/>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
