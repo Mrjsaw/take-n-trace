@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import axios from 'axios';
-import Container from 'react-bootstrap/Container' 
+import Container from 'react-bootstrap/Container'
 import Header from './Components/Header'
+import Home from './Components/Home'
 import Packages from './Packages/Packages'
 import ShowPackage from './Packages/ShowPackage'
 import Couriers from './Couriers/Couriers'
@@ -37,37 +38,37 @@ export default class extends Component {
     return (
       <BrowserRouter>
         <Fragment>
-          <Header/>
+          <Header />
 
           <Container>
-          <Switch>
-            <Route path="/" exact />
+            <Switch>
+              <Route path="/" exact component={Home} />
 
-            <Route path={`/packages/:packageId`} exact render={
-              ({ match }) => {
-                const pack = packages.find(pack => pack.id.toString() === match.params.packageId);
-                if (!pack) {
-                  return <NotFound />
+              <Route path={`/packages/:packageId`} exact render={
+                ({ match }) => {
+                  const pack = packages.find(pack => pack.id.toString() === match.params.packageId);
+                  if (!pack) {
+                    return <NotFound />
+                  }
+                  return <ShowPackage {...pack} />
                 }
-                return <ShowPackage {...pack} />
-              }
-            } />
-            <Route path="/packages" render={props => <Packages {...props} packages={packages}></Packages>} />
+              } />
+              <Route path="/packages" render={props => <Packages {...props} packages={packages}></Packages>} />
 
-            <Route path={`couriers/:courierId`} exact render={
-              ({ match }) => {
-                const courier = couriers.find(courier => courier.id.toString() === match.params.courierId);
-                if (!courier) {
-                  return <NotFound />
+              <Route path={`couriers/:courierId`} exact render={
+                ({ match }) => {
+                  const courier = couriers.find(courier => courier.id.toString() === match.params.courierId);
+                  if (!courier) {
+                    return <NotFound />
+                  }
+                  //TODO: return show reports
                 }
-                //TODO: return show reports
-              }
-            } />
-            <Route path="/couriers" render={props => <Couriers {...props} couriers={couriers}></Couriers>} />
+              } />
+              <Route path="/couriers" render={props => <Couriers {...props} couriers={couriers}></Couriers>} />
 
-            <Route path="/statistics" />
-            <Route component={NotFound} />
-          </Switch>
+              <Route path="/statistics" />
+              <Route component={NotFound} />
+            </Switch>
           </Container>
         </Fragment>
       </BrowserRouter>
