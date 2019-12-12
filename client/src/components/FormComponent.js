@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
+import Notfound from '../pages/Notfound';
+import { AccordionCollapse } from 'react-bootstrap';
 const axios = require('axios');
 
-const getDate = () => {
-    var today = new Date();
-    document.getElementsByClassName("date")[0].value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-    console.log(document.getElementsByClassName("date")[0].value);
-}
+
+const generateLabel = function(type){
+    // TO DO - request to db if tracking number already exist
+    let trackingnumber = type.substring(0, 3);
+    const length = 10;
+    for(let i = 0; i < length; i++){
+        trackingnumber += Math.floor(Math.random() * Math.floor(length)).toString();
+    }
+    return trackingnumber;
+};
+
 
 class Form extends Component{
     constructor(props){
@@ -41,17 +49,28 @@ class Form extends Component{
 
     submitHandler = (e) => {
         e.preventDefault();
-        this.state.type = "EXPRESS";
-        this.state.originCountry = "BELGIUM";
+        this.state.type = document.getElementsByName('type')[0].value;
+        this.state.trackingnumber = generateLabel(this.state.type);
+        let originCountry = document.getElementById("inputOriginCountry");
+        let destinationCountry = document.getElementById("inputDestinationCountry");
+        this.state.originCountry = originCountry.options[originCountry.selectedIndex].value;
+        this.state.destinationCountry = destinationCountry.options[destinationCountry.selectedIndex].value;
 
-        document.getElementsByName("")
-        this.state.destinationCountry ="BELGIUM";
+        console.log(this.state);
+        this.getTrackCode();
+        // axios.post('/createPackage', this.state).then((res) => {
+        //     console.log(res);
+        //   }, (err) => {
+        //     console.log(err);
+        //   });
+    }
 
-        axios.post('/createPackage', this.state).then((res) => {
+    getTrackCode = () => {
+        axios.get(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${this.state.trackingnumber}`).then((res) => {
             console.log(res);
-          }, (err) => {
+        }, (err) => {
             console.log(err);
-          });
+        });
     }
 
     handlerForm = (e) => {
@@ -62,6 +81,11 @@ class Form extends Component{
 
     render(){
         const {trackingnumber, description, length, height, width, weight, originName, originCountry, originStreet, originNumber, originZip, originCity, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email} = this.state;
+        const types = ["EXPRESS", "ECONOMY", "INTERNATONAL"];
+        if(!types.includes(this.props.search.type)){
+           console.log("hey");
+            return <Notfound/>;
+       }
         return(
             <form method="POST" onSubmit={this.submitHandler}>
                    <div className="user-form input-form">
@@ -164,7 +188,7 @@ class Form extends Component{
                         <input name="status" type="hidden" className="form-control" value="Order Receiving"/><br/>
 
                         <label for="inputType">Type</label>
-                        <input name="type" type="text" className="form-control" id="inputType" value="Express Delivery" readOnly disabled/><br/>
+                        <input name="type" type="text" className="form-control" id="inputType" value={this.props.search.type} readOnly disabled/><br/>
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </div> 
             </form>
