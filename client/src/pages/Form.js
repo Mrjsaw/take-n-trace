@@ -3,7 +3,6 @@ import Form from '../components/FormComponent';
 import '../form.css';
 
 const queryString = require('query-string');
-const axios = require('axios');
 
 class InputForm extends Component {
   state = {

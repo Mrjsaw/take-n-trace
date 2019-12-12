@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Notfound from '../pages/Notfound';
 import { AccordionCollapse } from 'react-bootstrap';
+import  { Redirect } from 'react-router-dom';
 const axios = require('axios');
 
 
@@ -14,11 +15,11 @@ const generateLabel = function(type){
     return trackingnumber;
 };
 
-
 class Form extends Component{
     constructor(props){
         super(props);
         this.state = {
+            redirect: false,
             trackingnumber: '',
             description: '',
             length: '',
@@ -47,6 +48,13 @@ class Form extends Component{
         this.setState({[e.target.name]: e.target.value});
     };
 
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    };
+
     submitHandler = (e) => {
         e.preventDefault();
         this.state.type = document.getElementsByName('type')[0].value;
@@ -63,6 +71,9 @@ class Form extends Component{
         //   }, (err) => {
         //     console.log(err);
         //   });
+        this.setState({
+            redirect: true
+        });
     }
 
     getTrackCode = () => {
@@ -80,14 +91,21 @@ class Form extends Component{
     }
 
     render(){
-        const {trackingnumber, description, length, height, width, weight, originName, originCountry, originStreet, originNumber, originZip, originCity, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email} = this.state;
+        const {trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, email} = this.state;
         const types = ["EXPRESS", "ECONOMY", "INTERNATONAL"];
+        const redirect = this.state.redirect;
+
         if(!types.includes(this.props.search.type)){
-           console.log("hey");
             return <Notfound/>;
        }
+       if(redirect){
+           return <Redirect to={{
+            pathname: '/order',
+            state: {trackingumber: this.state.trackingnumber}
+        }} />;
+       }
         return(
-            <form method="POST" onSubmit={this.submitHandler}>
+            <form method="POST" id="createform" onSubmit={this.submitHandler}>
                    <div className="user-form input-form">
                        <h1>Origin</h1>
                         <div className="row">
@@ -166,7 +184,7 @@ class Form extends Component{
                                 <input name="destinationZip" type="text" className="form-control" id="inputDestinationZip" placeholder="Enter Zip" value={destinationZip} onChange={this.changeHandler}/><br/>
                             </div>
                         </div>
-                        <button id="btnNextStep" className="btn btn-primary" onClick={this.handlerForm}>Next</button>   
+                        <button id="btnNextStep" className="btn btn-primary" type="button" onClick={this.handlerForm}>Next</button>   
                    </div>
                    
 
@@ -189,7 +207,7 @@ class Form extends Component{
 
                         <label for="inputType">Type</label>
                         <input name="type" type="text" className="form-control" id="inputType" value={this.props.search.type} readOnly disabled/><br/>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <button type="submit" className="btn btn-primary" >Submit</button>
                     </div> 
             </form>
        );

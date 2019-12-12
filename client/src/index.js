@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import PackageForm from './pages/Form.js'
 import shippingOptions from "./pages/shippingOptions.js";
 import Header from './components/Header'
+import Order from './pages/Order.js';
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
@@ -22,6 +23,7 @@ const routing = (
                 <Route path="/plan/form" component={PackageForm}/>
                 <Route path="/form" component={PackageForm} />
                 <Route path="/admin" component={Login} />
+                <Route path="/order" component={Order} />
                 <Route component={Notfound} />
             </Switch> 
     </Router>
