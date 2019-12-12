@@ -4,6 +4,8 @@ For the payment I used [fireship](https://fireship.io/lessons/paypal-checkout-fr
 
 Further down the line it will be implemented right after you order a package.
 
+For the tracknumber lookup I used a few guides, [guide1](https://www.youtube.com/watch?v=sBws8MSXN7A) , [guide2](https://www.youtube.com/watch?v=M-X0Jw2e68A) 
+
 ## How to test this locally
 
 This is still work in progress, the goal is to integrate it with our linux servers.
