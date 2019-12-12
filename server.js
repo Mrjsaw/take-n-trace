@@ -157,6 +157,23 @@ app.put('/changeStatusToPickUpByTn', (req, res) => {
     );
 });
 
+//Insert into reports tabels
+app.put('/createReport', (req, res) => {
+    connection.query(
+        'INSERT INTO `Reports` (courierID, packageID, status, date) VALUES (?, ?, ?, ?)',
+        [req.body.courierid, req.body.packageid, req.body.status, new Date()],
+        function (err, results, fields) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
+});
+
 
 /* ----------------
 * Couriers
@@ -239,10 +256,42 @@ app.get('/getInvoices', (req, res) => {
 * Statistics
 * ----------------- */
 
-//GET most popular shipment type
-app.get('/getPopularShipment', (req, res) => {
+//GET total express packages
+app.get('/getCountExpress', (req, res) => {
     connection.query(
-        'SELECT top 1 status, COUNT(status) AS FROM Packages GROUP BY status ORDER BY ',
+        'SELECT count(type) AS count FROM Packages WHERE type = "EXPRESS"',
+        function (err, results) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
+});
+
+//GET total economy packages
+app.get('/getCountEconomy', (req, res) => {
+    connection.query(
+        'SELECT count(type) AS count FROM Packages WHERE type = "ECONOMY"',
+        function (err, results) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
+});
+
+//GET total international packages
+app.get('/getCountInternational', (req, res) => {
+    connection.query(
+        'SELECT count(type) AS count FROM Packages WHERE type = "INTERNATIONAL"',
         function (err, results) {
             if (err) {
                 res.send(err);

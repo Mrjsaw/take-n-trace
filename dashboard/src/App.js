@@ -11,6 +11,7 @@ import Packages from './Packages/Packages'
 import Reports from './Couriers/Reports';
 import Couriers from './Couriers/Couriers'
 import NotFound from './Errors/404'
+import Statistics from './Statistics/Statistics';
 
 
 export default class extends Component {
@@ -68,7 +69,7 @@ export default class extends Component {
               } />
               <Route path="/couriers" render={props => <Couriers {...props} couriers={couriers}></Couriers>} />
 
-              <Route path="/statistics" />
+              <Route path="/statistics" component={Statistics} />
               <Route component={NotFound} />
             </Switch>
           </Container>
