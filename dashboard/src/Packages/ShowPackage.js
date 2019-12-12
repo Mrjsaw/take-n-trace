@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
-const ShowPackage = ({ id, trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, originCountry, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email }) => {
+const ShowPackage = ({ trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, originCountry, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email }) => {
 
     return (
         <Fragment>

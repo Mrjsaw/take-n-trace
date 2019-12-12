@@ -6,8 +6,9 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container'
 import Header from './Components/Header'
 import Home from './Components/Home'
-import Packages from './Packages/Packages'
 import ShowPackage from './Packages/ShowPackage'
+import Packages from './Packages/Packages'
+import Reports from './Couriers/Reports';
 import Couriers from './Couriers/Couriers'
 import NotFound from './Errors/404'
 
@@ -55,13 +56,14 @@ export default class extends Component {
               } />
               <Route path="/packages" render={props => <Packages {...props} packages={packages}></Packages>} />
 
-              <Route path={`couriers/:courierId`} exact render={
+              <Route path={`/couriers/:courierId`} exact render={
                 ({ match }) => {
                   const courier = couriers.find(courier => courier.id.toString() === match.params.courierId);
                   if (!courier) {
                     return <NotFound />
                   }
-                  //TODO: return show reports
+                  console.log(courier);
+                  return <Reports {...courier} />
                 }
               } />
               <Route path="/couriers" render={props => <Couriers {...props} couriers={couriers}></Couriers>} />

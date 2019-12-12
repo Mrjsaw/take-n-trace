@@ -6,6 +6,7 @@ const Packages = ({ match: { url }, packages }) => {
 
     return (
         <Fragment>
+            <h2 style={{textAlign: 'center', marginTop: '20px'}}>Packages</h2>
             <Table responsive bordered hover style={{ marginTop: '20px' }}>
                 <thead>
                     <tr>
@@ -16,8 +17,8 @@ const Packages = ({ match: { url }, packages }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {packages.map(({ id, trackingnumber, originCountry, destinationCountry, status, type, date }) =>
-                        <tr>
+                    {packages.map(({ id, trackingnumber, status, type, date }) =>
+                        <tr key={id}>
                             <td><Link to={`${url}/${id}`}>{trackingnumber}</Link></td>
                             <td>{status}</td>
                             <td>{type}</td>
