@@ -66,11 +66,11 @@ class Form extends Component{
 
         console.log(this.state);
         this.getTrackCode();
-        // axios.post('/createPackage', this.state).then((res) => {
-        //     console.log(res);
-        //   }, (err) => {
-        //     console.log(err);
-        //   });
+        axios.post('/createPackage', this.state).then((res) => {
+            console.log(res);
+          }, (err) => {
+            console.log(err);
+          });
         this.setState({
             redirect: true
         });
