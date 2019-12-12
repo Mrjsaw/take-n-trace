@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
-//import {Axios} from 'axios';
+import axios from "axios";
+import Input from './Components/Input';
+import Output from './Components/Output';
 
-class About extends Component {
+class Homepage extends Component {
 
-  
+  state = {
+    data: []
+  }
+  getPacketData = (e) => {
+    e.preventDefault();
+    const id = e.target.elements.id.value;
+    console.log(id;
+    axios.get(`getPackageByTrackingNumber/${id}`)
+    .then((res) => {
+      console.log(res);
+      this.setState( {data : res.data})
+    })
+  }
+
   render() {
     return (
-        <div className="Center">
-        <form>
-          <input className="TrackNr" type="text" name="tracknr" placeholder="Tracking number"/>
-          <input type="submit" value="Track" />
-        </form>
-      </div>
+        <div>
+          <Input getPacketData={this.getPacketData}/>
+          <Output data={this.state.data}/>
+        </div>
     );
   }
 }
 
-export default About;
+export default Homepage;
