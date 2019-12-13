@@ -15,7 +15,6 @@ class aboutBox extends Component {
       padding: "15px",
       //color: "#114da8",
       color: "white",
-      border: "6px solid grey",
       borderRadius: "10px",
       textAlign: "center",
       background:
@@ -33,7 +32,6 @@ class aboutBox extends Component {
       margin: "30px",
       padding: "15px",
       display: "inline",
-      border: "6px solid grey",
       borderRadius: "10px",
       maxWidth: "30%",
       maxHeight: "350px",
@@ -49,8 +47,8 @@ class aboutBox extends Component {
     };
 
     const img = {
-      width: "80%",
-      height: "70%",
+      width: "100%",
+      height: "100%",
       borderRadius: "10px"
     };
     return (
