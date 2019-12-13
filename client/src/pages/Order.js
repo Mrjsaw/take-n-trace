@@ -7,25 +7,25 @@ const jsPDF = require('jspdf');
 
 class Order extends Component {
 
-  componentDidMount(){
-    var doc = new jsPDF();
-    var elementHandler = {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
-    var source = window.document.getElementsByTagName("body")[0].innerHTML;
-    doc.fromHTML(
-        source,
-        15,
-        15,
-        {
-          'width': 180,'elementHandlers': elementHandler
-        });
+  // componentDidMount(){
+  //   var doc = new jsPDF();
+  //   var elementHandler = {
+  //     '#editor': function (element, renderer) {
+  //       return true;
+  //     }
+  //   };
+  //   var source = window.document.getElementsByTagName("body")[0].innerHTML;
+  //   doc.fromHTML(
+  //       source,
+  //       15,
+  //       15,
+  //       {
+  //         'width': 180,'elementHandlers': elementHandler
+  //       });
     
-    doc.output("dataurlnewwindow");
-  }
-  
+  //   doc.output("dataurlnewwindow");
+  // }
+
   render() {
     if(isUndefined(this.props.location.state)){
         return <Redirect to="/" />;

@@ -7,9 +7,9 @@ class OrderComponent extends Component {
     };
 
     getPackageData = () => {
-        axios.post("getPackageByTrackingNumber/", this.props).then((res) => {
+        axios.post("getPackageByTrackingNumber/", {trackingnumber: Object.values(this.props.data)[0]}).then((res) => {
+            console.log(res);
             this.setState({data: res.data[0]});
-            console.log(res.data);
         }, (err) => {
             console.log(err);
         })
