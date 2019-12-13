@@ -68,7 +68,7 @@ class Cards extends Component {
                     variant="primary"
                     type="submit"
                     name="type"
-                    value="express"
+                    value="EXPRESS"
                   >
                     SELECT
                   </Button>
@@ -96,7 +96,7 @@ class Cards extends Component {
                     variant="primary"
                     type="submit"
                     name="type"
-                    value="eu"
+                    value="ECONOMY"
                   >
                     SELECT
                   </Button>
@@ -124,7 +124,7 @@ class Cards extends Component {
                     variant="primary"
                     type="submit"
                     name="type"
-                    value="international"
+                    value="INTERNATONAL"
                   >
                     SELECT
                   </Button>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Tracking from './components/Tracking'
+import LookupTrack from './components/LookupTrack'
 
 
 
@@ -13,7 +14,8 @@ class App extends Component {
     return (
       <div>
         <div className="Center">
-          <Tracking />
+          {/* <Tracking/> */}
+          <LookupTrack />
 
         </div>
       </div>
