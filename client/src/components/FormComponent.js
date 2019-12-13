@@ -6,7 +6,8 @@ const axios = require('axios');
 
 
 const generateLabel = function(type){
-    // TO DO - request to db if tracking number already exist
+    // TO DO - move this function to backend
+    // TO DO - check request to DB - if trackingnr already exist
     let trackingnumber = type.substring(0, 3);
     const length = 10;
     for(let i = 0; i < length; i++){
@@ -20,6 +21,7 @@ class Form extends Component{
         super(props);
         this.state = {
             redirect: false,
+            error: false,
             trackingnumber: '',
             description: '',
             length: '',
@@ -65,24 +67,17 @@ class Form extends Component{
         this.state.destinationCountry = destinationCountry.options[destinationCountry.selectedIndex].value;
 
         console.log(this.state);
-        this.getTrackCode();
         axios.post('/createPackage', this.state).then((res) => {
-            console.log(res);
           }, (err) => {
-            console.log(err);
+                // TO DO - Redirect to internal error page => If internal server error
+                this.setState({error: true});
+
           });
         this.setState({
             redirect: true
         });
     }
 
-    getTrackCode = () => {
-        axios.get(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${this.state.trackingnumber}`).then((res) => {
-            console.log(res);
-        }, (err) => {
-            console.log(err);
-        });
-    }
 
     handlerForm = (e) => {
         document.getElementsByClassName("user-form")[0].style.visibility = "hidden";
@@ -94,6 +89,7 @@ class Form extends Component{
         const {trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, email} = this.state;
         const types = ["EXPRESS", "ECONOMY", "INTERNATONAL"];
         const redirect = this.state.redirect;
+        const error = this.state.error;
 
         if(!types.includes(this.props.search.type)){
             return <Notfound/>;
@@ -104,6 +100,13 @@ class Form extends Component{
             state: {trackingumber: this.state.trackingnumber}
         }} />;
        }
+
+       if(error){
+            console.log("hello");
+            return <Redirect to={{
+                pathname: '/error'
+            }} />;
+    }
         return(
             <form method="POST" id="createform" onSubmit={this.submitHandler}>
                    <div className="user-form input-form">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { isUndefined } from 'util';
 import  { Redirect } from 'react-router-dom';
 
-//import '../order.css';
+// tO DO: import '../order.css';
 import OrderComponent from '../components/OrderComponent';
 class Order extends Component {
 

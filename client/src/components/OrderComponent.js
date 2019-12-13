@@ -16,6 +16,7 @@ class OrderComponent extends Component {
     };
 
     componentDidMount(){
+        // Returns a package record from DB
         this.getPackageData();
     }
 
