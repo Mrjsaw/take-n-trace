@@ -1,16 +1,27 @@
 import React, {Component} from 'react';
+import Notfound from '../pages/Notfound';
+import { AccordionCollapse } from 'react-bootstrap';
+import  { Redirect } from 'react-router-dom';
 const axios = require('axios');
 
-const getDate = () => {
-    var today = new Date();
-    document.getElementsByClassName("date")[0].value = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-    console.log(document.getElementsByClassName("date")[0].value);
-}
+
+const generateLabel = function(type){
+    // TO DO - move this function to backend
+    // TO DO - check request to DB - if trackingnr already exist
+    let trackingnumber = type.substring(0, 3);
+    const length = 10;
+    for(let i = 0; i < length; i++){
+        trackingnumber += Math.floor(Math.random() * Math.floor(length)).toString();
+    }
+    return trackingnumber;
+};
 
 class Form extends Component{
     constructor(props){
         super(props);
         this.state = {
+            redirect: false,
+            error: false,
             trackingnumber: '',
             description: '',
             length: '',
@@ -39,20 +50,34 @@ class Form extends Component{
         this.setState({[e.target.name]: e.target.value});
     };
 
+
+    setRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    };
+
     submitHandler = (e) => {
         e.preventDefault();
-        this.state.type = "EXPRESS";
-        this.state.originCountry = "BELGIUM";
+        this.state.type = document.getElementsByName('type')[0].value;
+        this.state.trackingnumber = generateLabel(this.state.type);
+        let originCountry = document.getElementById("inputOriginCountry");
+        let destinationCountry = document.getElementById("inputDestinationCountry");
+        this.state.originCountry = originCountry.options[originCountry.selectedIndex].value;
+        this.state.destinationCountry = destinationCountry.options[destinationCountry.selectedIndex].value;
 
-        document.getElementsByName("")
-        this.state.destinationCountry ="BELGIUM";
-
+        console.log(this.state);
         axios.post('/createPackage', this.state).then((res) => {
-            console.log(res);
           }, (err) => {
-            console.log(err);
+                // TO DO - Redirect to internal error page => If internal server error
+                this.setState({error: true});
+
           });
+        this.setState({
+            redirect: true
+        });
     }
+
 
     handlerForm = (e) => {
         document.getElementsByClassName("user-form")[0].style.visibility = "hidden";
@@ -61,9 +86,29 @@ class Form extends Component{
     }
 
     render(){
-        const {trackingnumber, description, length, height, width, weight, originName, originCountry, originStreet, originNumber, originZip, originCity, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email} = this.state;
+        const {trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, email} = this.state;
+        const types = ["EXPRESS", "ECONOMY", "INTERNATONAL"];
+        const redirect = this.state.redirect;
+        const error = this.state.error;
+
+        if(!types.includes(this.props.search.type)){
+            return <Notfound/>;
+       }
+       if(redirect){
+           return <Redirect to={{
+            pathname: '/order',
+            state: {trackingumber: this.state.trackingnumber}
+        }} />;
+       }
+
+       if(error){
+            console.log("hello");
+            return <Redirect to={{
+                pathname: '/error'
+            }} />;
+    }
         return(
-            <form method="POST" onSubmit={this.submitHandler}>
+            <form method="POST" id="createform" onSubmit={this.submitHandler}>
                    <div className="user-form input-form">
                        <h1>Origin</h1>
                         <div className="row">
@@ -142,7 +187,7 @@ class Form extends Component{
                                 <input name="destinationZip" type="text" className="form-control" id="inputDestinationZip" placeholder="Enter Zip" value={destinationZip} onChange={this.changeHandler}/><br/>
                             </div>
                         </div>
-                        <button id="btnNextStep" className="btn btn-primary" onClick={this.handlerForm}>Next</button>   
+                        <button id="btnNextStep" className="btn btn-primary" type="button" onClick={this.handlerForm}>Next</button>   
                    </div>
                    
 
@@ -164,8 +209,8 @@ class Form extends Component{
                         <input name="status" type="hidden" className="form-control" value="Order Receiving"/><br/>
 
                         <label for="inputType">Type</label>
-                        <input name="type" type="text" className="form-control" id="inputType" value="Express Delivery" readOnly disabled/><br/>
-                        <button type="submit" className="btn btn-primary">Submit</button>
+                        <input name="type" type="text" className="form-control" id="inputType" value={this.props.search.type} readOnly disabled/><br/>
+                        <button type="submit" className="btn btn-primary" >Submit</button>
                     </div> 
             </form>
        );

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from '../components/FormComponent';
 import '../form.css';
 
-const axios = require('axios');
+const queryString = require('query-string');
 
 class InputForm extends Component {
   state = {
@@ -14,7 +14,7 @@ class InputForm extends Component {
     return (
       <div>
         <div className="container">
-          <Form/>
+          <Form search={queryString.parse(this.props.location.search)}/>
         </div>
       </div>
     );
