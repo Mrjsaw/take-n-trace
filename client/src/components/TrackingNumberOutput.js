@@ -39,7 +39,7 @@ function getStep(status) {
 class TrackingNumberOutput extends Component {
   render() {
     return (
-      <div>
+      <div style={{marginTop: "200px"}}>
         <Card bg="primary" text="white" className="text-center">
           <Card.Header style={{ fontWeight: "bold" }}>
             {this.props.data.trackingnumber}

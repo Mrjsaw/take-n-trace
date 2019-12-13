@@ -11,6 +11,7 @@ import PackageForm from './pages/Form.js'
 import shippingOptions from "./pages/shippingOptions.js";
 import Header from './components/Header'
 import Order from './pages/Order.js';
+import Payment from './components/Payment'
 import * as serviceWorker from './serviceWorker';
 
 const routing = (
@@ -22,6 +23,7 @@ const routing = (
                 <Route exact path="/plan" component={shippingOptions}/>
                 <Route path="/plan/form" component={PackageForm}/>
                 <Route path="/form" component={PackageForm} />
+                <Route path="/payment" component={Payment}/>
                 <Route path="/admin" component={Login} />
                 <Route path="/order" component={Order} />
                 <Route component={Notfound} />
