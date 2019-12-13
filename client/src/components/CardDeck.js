@@ -20,42 +20,17 @@ class Cards extends Component {
     });
   };
 
-
-  renderRedirect = (name) => {
+  renderRedirect = name => {
     if (this.state.redirect) {
-      return <Redirect to={`plan/form?type=${name}`}/>;
+      return <Redirect to={`plan/form?type=${name}`} />;
     }
-
   };
 
-
-textStyle ={
-  textAlign : "center"
-}
-
-
-  btnStyle = {
-     display: "inline-block",
-     padding: "0.3em 1.2em",
-     margin: "0 0.3em 0.3em 0",
-     borderRadius: "2em",
-     boxSizing: "border-box",
-     textDecoration: "none",
-     fontFamily:"Roboto,sans-serif",
-     fontWeight: "300",
-     color: "#FFFFFF",
-     backgroundColor: "#083a87",
-     textAlign: "center",
-     transition: "all 0.2s",
-     borderStyle: "none",
-     width: "120px"
-  }
-
-  
+  textStyle = {
+    textAlign: "center"
+  };
 
   render() {
-   
-
     const cardStyle = {
       justifyContent: "center",
       alignItems: "center"
@@ -73,7 +48,7 @@ textStyle ={
       alignItems: "center"
     };
     return (
-      <div style={bodyStyle}  className="body">
+      <div style={bodyStyle} className="body">
         <CardDeck>
           <Card style={cardStyle}>
             <div id="btnExpress" style={cardStyle}>
@@ -88,10 +63,16 @@ textStyle ={
             </Card.Body>
             <Card.Footer>
               <div className="buttonExpress">
-              <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="express">SELECT</Button>
-              </form>
-                
+                <form action="/plan/form" method="GET">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    name="type"
+                    value="express"
+                  >
+                    SELECT
+                  </Button>
+                </form>
               </div>
               <hr />
             </Card.Footer>
@@ -110,9 +91,16 @@ textStyle ={
             </Card.Body>
             <Card.Footer>
               <div className="btnEu">
-              <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="eu">SELECT</Button>
-              </form>
+                <form action="/plan/form" method="GET">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    name="type"
+                    value="eu"
+                  >
+                    SELECT
+                  </Button>
+                </form>
               </div>
               <hr />
             </Card.Footer>
@@ -130,17 +118,26 @@ textStyle ={
               </Card.Text>
             </Card.Body>
             <Card.Footer>
-              <div className = "btnInternational">
-              <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="international">SELECT</Button>
-              </form>
+              <div className="btnInternational">
+                <form action="/plan/form" method="GET">
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    name="type"
+                    value="international"
+                  >
+                    SELECT
+                  </Button>
+                </form>
               </div>
               <hr />
             </Card.Footer>
           </Card>
         </CardDeck>
         <br />
-        <p style={this.textStyle}>Our employees guarantee a very well done service.</p>
+        <p style={this.textStyle}>
+          Our employees guarantee a very well done service.
+        </p>
       </div>
     );
   }

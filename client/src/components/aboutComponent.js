@@ -43,7 +43,9 @@ class aboutBox extends Component {
     };
 
     const textStyle = {
-      textAlign: "center"
+      textAlign: "center",
+      fontSize: "15px",
+      color: "white"
     };
 
     const img = {
