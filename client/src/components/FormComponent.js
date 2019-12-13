@@ -96,7 +96,7 @@ class Form extends Component{
        }
        if(redirect){
            return <Redirect to={{
-            pathname: '/order',
+            pathname: '/payment',
             state: {trackingumber: this.state.trackingnumber}
         }} />;
        }
