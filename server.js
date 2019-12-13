@@ -252,7 +252,7 @@ app.post('/getCourierById', (req, res) => {
 //GET courier reports
 app.post('/getCourierReports', (req, res) => {
     connection.query(
-        'SELECT * FROM Reports WHERE courierID = ?',
+        'SELECT * FROM Reports WHERE courierID = ? GROUP BY trackingnumber ORDER BY date',
         [req.body.courierid],
         function (err, results) {
             if (err) {
