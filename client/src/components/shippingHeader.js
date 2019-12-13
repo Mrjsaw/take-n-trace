@@ -11,7 +11,8 @@ class ShippingHeader extends Component {
       marginBottom: "80px",
       paddingTop: "30px",
       color: "white",
-      fontFamily: "Lucida Sans"
+      fontFamily: "Lucida Sans",
+      textAlign: "center"
     };
 
     return (
