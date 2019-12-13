@@ -89,7 +89,7 @@ textStyle ={
             <Card.Footer>
               <div className="buttonExpress">
               <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="express">SELECT</Button>
+                <Button variant="primary" type="submit" name="type" value="EXPRESS">SELECT</Button>
               </form>
                 
               </div>
@@ -111,7 +111,7 @@ textStyle ={
             <Card.Footer>
               <div className="btnEu">
               <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="eu">SELECT</Button>
+                <Button variant="primary" type="submit" name="type" value="ECONOMY">SELECT</Button>
               </form>
               </div>
               <hr />
@@ -132,7 +132,7 @@ textStyle ={
             <Card.Footer>
               <div className = "btnInternational">
               <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="international">SELECT</Button>
+                <Button variant="primary" type="submit" name="type" value="INTERNATONAL">SELECT</Button>
               </form>
               </div>
               <hr />
