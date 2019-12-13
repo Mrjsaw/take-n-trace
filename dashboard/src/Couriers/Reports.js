@@ -31,16 +31,14 @@ export default class extends Component {
                     <tr>
                         <th>Tracking number</th>
                         <th>Status</th>
-                        <th>Type</th>
                         <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {packages.map(({ id, trackingnumber, status, type, date }) =>
+                    {packages.map(({ id, trackingnumber, status, date }) =>
                         <tr key={id}>
                             <td>{trackingnumber}</td>
                             <td>{status}</td>
-                            <td>{type}</td>
                             <td>{date}</td>
                         </tr>
                     )}
