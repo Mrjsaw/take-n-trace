@@ -1,7 +1,9 @@
 import React, { Component, useState, useRef, useEffect } from 'react';
+import OrderComponent from './OrderComponent.js';
+import  { Redirect } from 'react-router-dom';
+import Order from '../pages/Order.js';
 
-
-function Product({ product }) {
+function Product({ product }, {trackingnumber}) {
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
     const paypalRef = useRef();
@@ -39,6 +41,7 @@ function Product({ product }) {
       return (
         <div>
           <h1>Thank you for your purchase!</h1>
+          <OrderComponent data={product.trackingnumber}/>
         </div>
       );
     }
@@ -62,14 +65,19 @@ function Product({ product }) {
   const product = {
     price: 1,
     name: 'een package',
-    description: 'dit is een heel mooie postpacket'
+    description: 'dit is een heel mooie postpacket',
+    trackingnumber: false
   };
-  
+
 
 class Payment extends Component {
+  constructor(props){
+    super(props);
+}
 
-   
   render() {
+    product.trackingnumber = this.props.location.state;
+    console.log(product);
     return (
       <div className="Payment">
         <Product product={product} />
