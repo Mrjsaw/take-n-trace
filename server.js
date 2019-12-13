@@ -166,8 +166,8 @@ app.put('/changeStatusToPickUpByTn', (req, res) => {
 //Insert into reports tabels
 app.post('/createReport', (req, res) => {
     connection.query(
-        'INSERT INTO `Reports` (courierID, packageID, status, date) VALUES (?, ?, ?, ?)',
-        [req.body.courierid, req.body.packageid, req.body.status, new Date()],
+        'INSERT INTO `Reports` (courierID, trackingnumber, status, date) VALUES (?, ?, ?, ?)',
+        [req.body.courierid, req.body.trackingnumber, req.body.status, new Date()],
         function (err, results, fields) {
             if (err) {
                 res.send(err);

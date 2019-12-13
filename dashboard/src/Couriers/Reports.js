@@ -11,7 +11,7 @@ export default class extends Component {
     }
   
     componentDidMount() {
-      axios.post(`/getCourierReports`, {courier: this.state.courierid})
+      axios.post(`/getCourierReports`, {courierid: this.state.courierid})
         .then(res => {
           console.log(res.data);
           this.setState({ packages: res.data });
