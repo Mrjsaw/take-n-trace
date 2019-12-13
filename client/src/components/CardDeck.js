@@ -30,10 +30,28 @@ class Cards extends Component {
     textAlign: "center"
   };
 
+  btnStyle = {
+    display: "inline-block",
+    padding: "0.3em 1.2em",
+    margin: "0 0.3em 0.3em 0",
+    borderRadius: "2em",
+    boxSizing: "border-box",
+    textDecoration: "none",
+    fontFamily: "Roboto,sans-serif",
+    fontWeight: "300",
+    color: "#FFFFFF",
+    backgroundColor: "#083a87",
+    textAlign: "center",
+    transition: "all 0.2s",
+    borderStyle: "none",
+    width: "120px"
+  };
+
   render() {
     const cardStyle = {
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+      textAlign: "center"
     };
 
     const imgStyle = {
@@ -61,21 +79,20 @@ class Cards extends Component {
                 Starting from $9.99
               </Card.Text>
             </Card.Body>
-            <Card.Footer>
-              <div className="buttonExpress">
-                <form action="/plan/form" method="GET">
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    name="type"
-                    value="EXPRESS"
-                  >
-                    SELECT
-                  </Button>
-                </form>
-              </div>
-              <hr />
-            </Card.Footer>
+
+            <div className="buttonExpress">
+              <form action="/plan/form" method="GET">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  name="type"
+                  value="EXPRESS"
+                >
+                  SELECT
+                </Button>
+              </form>
+            </div>
+            <hr />
           </Card>
           <Card style={cardStyle}>
             <div id="btnEu" style={cardStyle}>
@@ -89,21 +106,20 @@ class Cards extends Component {
                 Starting from $29.99
               </Card.Text>
             </Card.Body>
-            <Card.Footer>
-              <div className="btnEu">
-                <form action="/plan/form" method="GET">
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    name="type"
-                    value="ECONOMY"
-                  >
-                    SELECT
-                  </Button>
-                </form>
-              </div>
-              <hr />
-            </Card.Footer>
+
+            <div style={cardStyle} className="btnEu">
+              <form action="/plan/form" method="GET">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  name="type"
+                  value="ECONOMY"
+                >
+                  SELECT
+                </Button>
+              </form>
+            </div>
+            <hr />
           </Card>
           <Card style={cardStyle}>
             <div id="btnExpress" style={cardStyle}>
@@ -117,21 +133,20 @@ class Cards extends Component {
                 Starting from $59.99
               </Card.Text>
             </Card.Body>
-            <Card.Footer>
-              <div className="btnInternational">
-                <form action="/plan/form" method="GET">
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    name="type"
-                    value="INTERNATONAL"
-                  >
-                    SELECT
-                  </Button>
-                </form>
-              </div>
-              <hr />
-            </Card.Footer>
+
+            <div style={cardStyle} className="btnInternational">
+              <form action="/plan/form" method="GET">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  name="type"
+                  value="INTERNATONAL"
+                >
+                  SELECT
+                </Button>
+              </form>
+            </div>
+            <hr />
           </Card>
         </CardDeck>
         <br />
