@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import AboutBox from "../components/aboutComponent";
 
 class About extends Component {
-
   render() {
     return (
       <div>
-        <div className="container">
-        <h1>About us</h1>
-      </div>
+        <AboutBox />
       </div>
     );
   }
