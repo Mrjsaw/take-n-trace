@@ -20,7 +20,7 @@ class Order extends Component {
   //       15,
   //       15,
   //       {
-  //         'width': 180,'elementHandlers': elementHandler
+  //         'width': 1800,'elementHandlers': elementHandler
   //       });
     
   //   doc.output("dataurlnewwindow");
