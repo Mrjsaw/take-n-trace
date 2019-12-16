@@ -21,6 +21,7 @@ class OrderComponent extends Component {
     }
 
     render() {
+      const src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${this.state.data.trackingnumber}`;
       return (
         <div className="container">
         <div className="banner row">
@@ -56,7 +57,7 @@ class OrderComponent extends Component {
         </div>
         <div className="track-info row">
             <div className="col-6">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1000"/>
+                <img src={src}/>
             </div>
             <div className="col-6">
                 <table>
