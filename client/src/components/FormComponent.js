@@ -3,6 +3,27 @@ import Notfound from '../pages/Notfound';
 import { AccordionCollapse } from 'react-bootstrap';
 import  { Redirect } from 'react-router-dom';
 const axios = require('axios');
+const jsPDF = require('jspdf');
+
+//const API_KEY = "gUBfZJhzJ2b6XmzqrFKTMTms_FlsODAqVD2ERuOdpgo";
+
+// const testfunction = () => {
+//     // autocomplete generator for address
+//     // Returns a list of potential address
+//     axios.get(`http://autocomplete.geocoder.ls.hereapi.com/6.2/?apikey=${API_KEY}
+//         &query=hannuitsesteenweg
+//         &beginHighlight=<b>
+//         &endHighlight=</b>`).then((res) => {
+//             console.log(res);
+//         }).catch((err) => {
+//             console.log(err);
+//             // TO FIX: Gives a network error
+//         });
+
+//     axios.get().then((res) => {
+//         console.log(res);
+//     }).catch((err) => console.log(err));
+// };
 
 
 const generateLabel = function(type){
@@ -45,6 +66,7 @@ class Form extends Component{
             email: ''
         };
     }
+
 
     changeHandler = (e) => {
         this.setState({[e.target.name]: e.target.value});
