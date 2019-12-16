@@ -140,7 +140,7 @@ class Cards extends Component {
                   variant="primary"
                   type="submit"
                   name="type"
-                  value="INTERNATONAL"
+                  value="INTERNATIONAL"
                 >
                   SELECT
                 </Button>

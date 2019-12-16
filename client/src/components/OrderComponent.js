@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 const axios = require('axios');
+const jsPDF = require('jspdf');
 
 class OrderComponent extends Component {
     state = {
@@ -18,6 +19,24 @@ class OrderComponent extends Component {
     componentDidMount(){
         // Returns a package record from DB
         this.getPackageData();
+        var doc = new jsPDF();
+        var elementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+    
+        var source = document.getElementsByClassName("container")[0];
+        console.log(source);
+        doc.fromHTML(
+            source,
+            10,
+            10,
+            {
+                'width': 500,'elementHandlers': elementHandlers
+            });
+    
+        doc.output("new window");
     }
 
     render() {
