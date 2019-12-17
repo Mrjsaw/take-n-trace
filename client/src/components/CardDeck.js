@@ -20,45 +20,38 @@ class Cards extends Component {
     });
   };
 
-
-  renderRedirect = (name) => {
+  renderRedirect = name => {
     if (this.state.redirect) {
-      return <Redirect to={`plan/form?type=${name}`}/>;
+      return <Redirect to={`plan/form?type=${name}`} />;
     }
-
   };
 
-
-textStyle ={
-  textAlign : "center"
-}
-
+  textStyle = {
+    textAlign: "center"
+  };
 
   btnStyle = {
-     display: "inline-block",
-     padding: "0.3em 1.2em",
-     margin: "0 0.3em 0.3em 0",
-     borderRadius: "2em",
-     boxSizing: "border-box",
-     textDecoration: "none",
-     fontFamily:"Roboto,sans-serif",
-     fontWeight: "300",
-     color: "#FFFFFF",
-     backgroundColor: "#083a87",
-     textAlign: "center",
-     transition: "all 0.2s",
-     borderStyle: "none",
-     width: "120px"
-  }
-
-  
+    display: "inline-block",
+    padding: "0.3em 1.2em",
+    margin: "0 0.3em 0.3em 0",
+    borderRadius: "2em",
+    boxSizing: "border-box",
+    textDecoration: "none",
+    fontFamily: "Roboto,sans-serif",
+    fontWeight: "300",
+    color: "#FFFFFF",
+    backgroundColor: "#083a87",
+    textAlign: "center",
+    transition: "all 0.2s",
+    borderStyle: "none",
+    width: "120px"
+  };
 
   render() {
-   
-
     const cardStyle = {
       justifyContent: "center",
-      alignItems: "center"
+      alignItems: "center",
+      textAlign: "center"
     };
 
     const imgStyle = {
@@ -73,7 +66,7 @@ textStyle ={
       alignItems: "center"
     };
     return (
-      <div style={bodyStyle}  className="body">
+      <div style={bodyStyle} className="body">
         <CardDeck>
           <Card style={cardStyle}>
             <div id="btnExpress" style={cardStyle}>
@@ -86,15 +79,20 @@ textStyle ={
                 Starting from $9.99
               </Card.Text>
             </Card.Body>
-            <Card.Footer>
-              <div className="buttonExpress">
+
+            <div className="buttonExpress">
               <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="EXPRESS">SELECT</Button>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  name="type"
+                  value="EXPRESS"
+                >
+                  SELECT
+                </Button>
               </form>
-                
-              </div>
-              <hr />
-            </Card.Footer>
+            </div>
+            <hr />
           </Card>
           <Card style={cardStyle}>
             <div id="btnEu" style={cardStyle}>
@@ -108,14 +106,20 @@ textStyle ={
                 Starting from $29.99
               </Card.Text>
             </Card.Body>
-            <Card.Footer>
-              <div className="btnEu">
+
+            <div style={cardStyle} className="btnEu">
               <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="ECONOMY">SELECT</Button>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  name="type"
+                  value="ECONOMY"
+                >
+                  SELECT
+                </Button>
               </form>
-              </div>
-              <hr />
-            </Card.Footer>
+            </div>
+            <hr />
           </Card>
           <Card style={cardStyle}>
             <div id="btnExpress" style={cardStyle}>
@@ -129,18 +133,26 @@ textStyle ={
                 Starting from $59.99
               </Card.Text>
             </Card.Body>
-            <Card.Footer>
-              <div className = "btnInternational">
+
+            <div style={cardStyle} className="btnInternational">
               <form action="/plan/form" method="GET">
-                <Button variant="primary" type="submit" name="type" value="INTERNATONAL">SELECT</Button>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  name="type"
+                  value="INTERNATIONAL"
+                >
+                  SELECT
+                </Button>
               </form>
-              </div>
-              <hr />
-            </Card.Footer>
+            </div>
+            <hr />
           </Card>
         </CardDeck>
         <br />
-        <p style={this.textStyle}>Our employees guarantee a very well done service.</p>
+        <p style={this.textStyle}>
+          Our employees guarantee a very well done service.
+        </p>
       </div>
     );
   }

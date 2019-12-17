@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 const axios = require('axios');
+const jsPDF = require('jspdf');
 
 class OrderComponent extends Component {
     state = {
@@ -18,9 +19,28 @@ class OrderComponent extends Component {
     componentDidMount(){
         // Returns a package record from DB
         this.getPackageData();
+        var doc = new jsPDF();
+        var elementHandlers = {
+            '#editor': function (element, renderer) {
+                return true;
+            }
+        };
+    
+        var source = document.getElementsByClassName("container")[0];
+        console.log(source);
+        doc.fromHTML(
+            source,
+            10,
+            10,
+            {
+                'width': 500,'elementHandlers': elementHandlers
+            });
+    
+        doc.output("new window");
     }
 
     render() {
+      const src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${this.state.data.trackingnumber}`;
       return (
         <div className="container">
         <div className="banner row">
@@ -56,7 +76,7 @@ class OrderComponent extends Component {
         </div>
         <div className="track-info row">
             <div className="col-6">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=1000"/>
+                <img src={src}/>
             </div>
             <div className="col-6">
                 <table>
