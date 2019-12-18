@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table'
 
 const Packages = ({ match: { url }, packages }) => {
-
+    console.log(packages);
     return (
         <Fragment>
             <h2 style={{textAlign: 'center', marginTop: '20px'}}>Packages</h2>
@@ -22,7 +22,7 @@ const Packages = ({ match: { url }, packages }) => {
                             <td><Link to={`${url}/${id}`}>{trackingnumber}</Link></td>
                             <td>{status}</td>
                             <td>{type}</td>
-                            <td>{date}</td>
+                            <td>{date.replace('T', ' ').replace('Z', ' ').substring(0, date.length - 8)}</td>
                         </tr>
                     )}
                 </tbody>

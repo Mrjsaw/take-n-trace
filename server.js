@@ -78,7 +78,7 @@ app.get('/express_backend', (req, res) => {
 //GET all packages
 app.get('/getPackages', (req, res) => {
     connection.query(
-        'SELECT * FROM Packages',
+        'SELECT * FROM Packages ORDER BY date DESC',
         function (err, results) {
             if (err) {
                 res.send(err);
@@ -252,7 +252,7 @@ app.post('/getCourierById', (req, res) => {
 //GET courier reports
 app.post('/getCourierReports', (req, res) => {
     connection.query(
-        'SELECT * FROM Reports WHERE courierID = ?',
+        'SELECT * FROM Reports WHERE courierID = ? AND cast(date as Date) = cast(CURRENT_DATE() as Date) ORDER BY date DESC, trackingnumber',
         [req.body.courierid],
         function (err, results) {
             if (err) {

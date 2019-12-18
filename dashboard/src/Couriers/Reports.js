@@ -39,7 +39,7 @@ export default class extends Component {
                         <tr key={id}>
                             <td>{trackingnumber}</td>
                             <td>{status}</td>
-                            <td>{date}</td>
+                            <td>{date.replace('T', ' ').replace('Z', ' ').substring(0, date.length - 8)}</td>
                         </tr>
                     )}
                 </tbody>
