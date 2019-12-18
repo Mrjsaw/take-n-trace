@@ -23,12 +23,10 @@ export default class extends Component {
   componentDidMount() {
     axios.get(`/getPackages`)
       .then(res => {
-        console.log(res.data);
         this.setState({ packages: res.data });
       });
     axios.get(`/getCouriers`)
       .then(res => {
-        console.log(res.data);
         this.setState({ couriers: res.data });
       });
   }

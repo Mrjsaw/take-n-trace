@@ -10,11 +10,22 @@ export default class Chart extends Component{
         console.log(this.props);
     }
     
+    options = {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+
     render(){
         return (
           <div className="chart">
             <Bar
-              data={this.state.chartData}
+              data={this.state.chartData} options={this.options}
             />
           </div>
         )

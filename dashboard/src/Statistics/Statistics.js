@@ -32,12 +32,12 @@ export default class extends Component {
         this.setState({packageData: {
             labels: ['Express', 'Economy', 'International'],
             datasets: [{
-                label: 'amount of packages per type',
+                label: 'Amount of packages',
                 data: types,
                 backgroundColor:[
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(255, 206, 86, 0.6)']
+                    'orange',
+                    'lightgreen',
+                    'lightblue']
             }]
         }}, () => {
             console.log(this.state.packageData.datasets);
