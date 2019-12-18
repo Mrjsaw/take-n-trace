@@ -48,7 +48,7 @@ export default class extends Component {
     render() {
         return (
             <Fragment>
-                <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Statistiscs</h2>
+                <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Statistics</h2>
                 <Chart chartData={this.state.packageData} />
             </Fragment>
         );
