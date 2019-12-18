@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css';
 import { Nav, Navbar } from 'react-bootstrap';
 import logo from '../img/take-n-trace-logo.png';
-import {Link, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import auth0Client from '../Auth';
 
 function Header(props) {
