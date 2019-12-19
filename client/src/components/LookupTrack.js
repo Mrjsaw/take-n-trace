@@ -12,9 +12,10 @@ class Tracking extends Component {
   getPacketData = e => {
     e.preventDefault();
     const trackingnumber = e.target.elements.trackingnumber.value;
+    const destinationZip = e.target.elements.destinationZip.value;
     console.log(trackingnumber);
     axios
-      .post(`/getPackageByTrackingNumber`, { trackingnumber: trackingnumber })
+      .post(`/getPackageByTrackingNumberAndZip`, { trackingnumber: trackingnumber , destinationZip: destinationZip})
       .then(res => {
         console.log(res);
         if (res.data.length != 0){

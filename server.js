@@ -355,3 +355,22 @@ app.post('/getReportsByTrackingnumber', (req, res) => {
         }
     );
 });
+
+
+// GET all packages by trackingnumber and correct destination zip
+app.post('/getPackageByTrackingNumberAndZip', (req, res) => {
+    console.log('do i even get this')
+    connection.query(
+        'SELECT * FROM Packages WHERE trackingnumber = ? AND destinationZIp = ?',
+        [req.body.trackingnumber, req.body.destinationZip],
+        function (err, results) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
+});

@@ -54,8 +54,6 @@ class TrackingNumberOutput extends Component {
             <img src={getLogo(this.props.data.status)} /> <br></br>
             Type: {this.props.data.type}
             <br></br>
-            {this.props.data.date}
-            <br></br>
           </Card.Header>
 
           <Card.Header>
