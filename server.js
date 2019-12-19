@@ -342,7 +342,7 @@ app.get('/getCountInternational', (req, res) => {
 
 app.post('/getReportsByTrackingnumber', (req, res) => {
     connection.query(
-        'SELECT * FROM Reports WHERE trackingnumber = ?',
+        'SELECT * FROM Reports WHERE trackingnumber = ? ORDER BY date DESC',
         [req.body.trackingnumber],
         function (err, results) {
             if (err) {
