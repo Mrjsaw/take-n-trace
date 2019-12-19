@@ -59,7 +59,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //console.log that your server is up and running
-app.listen(port, () => console.log(`Take 'n Trace web server running on port ${port}`));
+app.listen(port, 'localhost', () => console.log(`Take 'n Trace web server running on port ${port}`));
 
 //Help page with all API calls
 app.get('/', (req, res) => {
@@ -328,6 +328,22 @@ app.get('/getCountEconomy', (req, res) => {
 app.get('/getCountInternational', (req, res) => {
     connection.query(
         'SELECT count(type) AS count FROM Packages WHERE type = "INTERNATIONAL"',
+        function (err, results) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
+});
+
+app.post('/getReportsByTrackingnumber', (req, res) => {
+    connection.query(
+        'SELECT * FROM Reports WHERE trackingnumber = ?',
+        [req.body.trackingnumber],
         function (err, results) {
             if (err) {
                 res.send(err);
