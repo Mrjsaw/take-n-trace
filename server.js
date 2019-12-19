@@ -59,7 +59,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //console.log that your server is up and running
-app.listen(port, 'localhost', () => console.log(`Take 'n Trace web server running on port ${port}`));
+app.listen(port, () => console.log(`Take 'n Trace web server running on port ${port}`));
 
 //Help page with all API calls
 app.get('/', (req, res) => {
