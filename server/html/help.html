@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Express server - Take 'n Trace</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <br>
+        <h2>Backend calls</h2>
+        <br>
+        <h4>Packages</h4>
+        <ul>
+            <li><strong>GET /getPackages: </strong>retrieve all packages from database.</li>
+            <li><strong>POST /getPackageById: </strong>pass a packageID and retrieve all package information.</li>
+            <li><strong>POST /getPackageByTrackingNumber: </strong> pass a tracking number and retrieve all package
+                information.</li>
+            <li><strong>POST /createPackage: </strong>insert a newly created package into the database.</li>
+            <li><strong>PUT /changeStatusToPickUpByTn: </strong>pass a tracking number and change the status of a
+                package to "PickUp".</li>
+            <li><strong>PUT /changeStatusToDeliveryByTn: </strong>pass a tracking number and change the status of a
+                package to "Delivery".</li>
+            <li><strong>PUT /changeStatusToDeliveredByTn: </strong>pass a tracking number and change the status of a
+                package to "Delivered".</li>
+            <li><strong>POST /createReport: </strong>insert a newly created report into the database.</li>
+        </ul>
+
+        <h4>Couriers</h4>
+        <ul>
+            <li><strong>GET /getCouriers: </strong>retrieve all couriers from database.</li>
+            <li><strong>POST /getCourierById: </strong>pass a courierID and retrieve all package information.</li>
+            <li><strong>POST /getCourierReports: </strong>pass a courierID and retrieve all reports from this courier.</li>
+        </ul>
+
+        <h4>Invoices</h4>
+        <ul>
+            <li><strong>GET /getInvoices: </strong>retrieve all invoices from database.</li>
+        </ul>
+
+        <h4>Statistics</h4>
+        <ul>
+            <li><strong>GET /countExpress: </strong> retrieve the amount of express packages from the database.</li>
+            <li><strong>GET /countEconomy: </strong> retrieve the amount of economy packages from the database.</li>
+            <li><strong>GET /countInternational: </strong> retrieve the amount of international packages from the database.</li>
+        </ul>
+    </div>
+</body>
+
+</html>
