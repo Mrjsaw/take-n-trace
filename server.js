@@ -42,16 +42,16 @@ app.use(morgan('combined'));
 
 const checkJwt = jwt({
     secret: jwksRsa.expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: `https://dev-gz7srp4h.auth0.com/.well-known/jwks.json`
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: `https://dev-gz7srp4h.auth0.com/.well-known/jwks.json`
     }),
-  
+
     audience: 'xRsU1OYDwtxuMaUFXK45ceQ2OdGpP20I',
     issuer: `https://dev-gz7srp4h.auth0.com/`,
     algorithms: ['RS256']
-  });
+});
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -351,15 +351,16 @@ app.get('/getCountInternational', (req, res) => {
 
 app.post('/sendMail', (req, res) => {
     const content = "<h1>Hello world</h1>";
-    
-    const transporter = nodemailer.createTransport({ 
+
+    const transporter = nodemailer.createTransport({
         host: 'smtp.ethereal.email',
-        sendmail: true, 
+        sendmail: true,
         port: 25,
         auth: {
-        user: 'dianna.satterfield@ethereal.email',
-        pass: 'vacT5m637DMKz49Th5'
-    }});
+            user: 'dianna.satterfield@ethereal.email',
+            pass: 'vacT5m637DMKz49Th5'
+        }
+    });
 
     let mailOptions = {
         from: 'Nodemailer Contact <dianna.satterfield@ethereal.email>',
@@ -370,17 +371,18 @@ app.post('/sendMail', (req, res) => {
     }
 
     transporter.sendMail(mailOptions, (error, info) => {
-        if(error){
+        if (error) {
             emailMessage = "there was an error :-(, and it was this: " + error.message;
-        }else{
+        } else {
             emailMessage = "Message sent: " + info.response;
         }
         console.log(emailMessage);
         return res.json({
-          message: "success",
-          email: emailMessage
+            message: "success",
+            email: emailMessage
         });
     })
+});
 
 
 app.post('/getReportsByTrackingnumber', (req, res) => {
