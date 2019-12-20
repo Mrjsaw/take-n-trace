@@ -4,11 +4,13 @@ const jsPDF = require('jspdf');
 
 class OrderComponent extends Component {
     state = {
-      data: {}
+      data: {},
+      send: false
     };
 
     getPackageData = () => {
-        axios.post("getPackageByTrackingNumber/", {trackingnumber: Object.values(this.props.data)[0]}).then((res) => {
+        axios.post("/getPackageByTrackingNumber", {trackingnumber: Object.values(this.props).join("")}).then((res) => {
+            console.log(this.props);
             console.log(res);
             this.setState({data: res.data[0]});
         }, (err) => {
@@ -16,33 +18,25 @@ class OrderComponent extends Component {
         })
     };
 
-    componentDidMount(){
-        // Returns a package record from DB
-        this.getPackageData();
-        var doc = new jsPDF();
-        var elementHandlers = {
-            '#editor': function (element, renderer) {
-                return true;
-            }
-        };
-    
-        var source = document.getElementsByClassName("container")[0];
-        console.log(source);
-        doc.fromHTML(
-            source,
-            10,
-            10,
-            {
-                'width': 500,'elementHandlers': elementHandlers
-            });
-    
-        doc.output("new window");
+    sendMail = () => {
+        axios.post("http://localhost:3010/sendMail", this.state.data).then((res) => {
+            console.log(res);
+        }, (err) => {
+            console.log(err);
+        });
     }
+
+    componentWillMount(){
+        this.getPackageData();
+        this.sendMail();
+    }
+
+
 
     render() {
       const src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${this.state.data.trackingnumber}`;
       return (
-        <div className="container">
+        <div className="container invoice">
         <div className="banner row">
             <div className="col-8">
                 <h1>Commercial Invoice</h1>
@@ -58,7 +52,7 @@ class OrderComponent extends Component {
         <div className="personal-details row">
             <div id="senderDetails" class="col-6">
                 <span id="subtitles"><p>Sender details</p></span>
-                <hr/>
+                <hr/>+
                 <h2>{this.state.data.originName}</h2>
                 <p>{this.state.data.originStreet} {this.state.data.originNumber}</p>
                 <p>{this.state.data.originCity}  {this.state.data.originZip}</p>

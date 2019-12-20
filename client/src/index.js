@@ -13,6 +13,7 @@ import Header from './components/Header'
 import Order from './pages/Order.js';
 import Payment from './components/Payment'
 import * as serviceWorker from './serviceWorker';
+import Footer from './components/Footer.js';
 
 const routing = (
     <Router>
@@ -27,7 +28,7 @@ const routing = (
                 <Route path="/admin" component={Login} />
                 <Route path="/order" component={Order} />
                 <Route component={Notfound} />
-            </Switch> 
+            </Switch>
     </Router>
 )
 

@@ -6,14 +6,16 @@ import TrackingNumberOutput from "./TrackingNumberOutput";
 class Tracking extends Component {
   state = {
     data: [],
+    dataReports: [],
     visible: false
   };
   getPacketData = e => {
     e.preventDefault();
     const trackingnumber = e.target.elements.trackingnumber.value;
+    const destinationZip = e.target.elements.destinationZip.value;
     console.log(trackingnumber);
     axios
-      .post(`/getPackageByTrackingNumber`, { trackingnumber: trackingnumber })
+      .post(`/getPackageByTrackingNumberAndZip`, { trackingnumber: trackingnumber , destinationZip: destinationZip})
       .then(res => {
         console.log(res);
         if (res.data.length != 0){
@@ -25,13 +27,25 @@ class Tracking extends Component {
           this.state.visible = true; 
         } else this.state.visible = false; 
       });
+
+      axios
+      .post(`/getReportsByTrackingNumber`, { trackingnumber: trackingnumber })
+      .then(res => {
+        console.log('THIS IS THE SECOND AXIOS CALL');
+        if (res.data.length != 0){
+          console.log('HALLOOOOOOOOOOOOOO');
+          this.setState({ dataReports: res.data});
+          console.log(this.state.dataReports)
+
+        } else this.state.visible = false; 
+      });
   };
 
   render() {
     if (this.state.visible) {
       return (
         <div>
-          <TrackingNumberOutput data={this.state.data} />
+          <TrackingNumberOutput data={this.state.data} dataReports={this.state.dataReports} />
         </div>
       );
     } else
