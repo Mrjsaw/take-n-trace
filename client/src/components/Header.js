@@ -6,7 +6,7 @@ import logo from '../img/take-n-trace-logo.png';
 function Header() {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
-         <a class="navbar-brand" href="#"><img src={logo} alt="logo"/></a>
+         <a class="navbar-brand" href="/"><img src={logo} alt="logo"/></a>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
