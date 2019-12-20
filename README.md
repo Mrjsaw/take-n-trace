@@ -1,5 +1,6 @@
 # Programming-project-2-take-n-trace-web
 
+Connect to EhB VPN to make sure the website connects to the right back-end.
 
 ## Client website
 ### `cd client`
