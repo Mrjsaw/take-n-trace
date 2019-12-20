@@ -381,7 +381,7 @@ app.post('/sendMail', (req, res) => {
           email: emailMessage
         });
     })
-
+});
 
 app.post('/getReportsByTrackingnumber', (req, res) => {
     connection.query(
@@ -399,10 +399,8 @@ app.post('/getReportsByTrackingnumber', (req, res) => {
     );
 });
 
-
 // GET all packages by trackingnumber and correct destination zip
 app.post('/getPackageByTrackingNumberAndZip', (req, res) => {
-    console.log('do i even get this')
     connection.query(
         'SELECT * FROM Packages WHERE trackingnumber = ? AND destinationZIp = ?',
         [req.body.trackingnumber, req.body.destinationZip],
