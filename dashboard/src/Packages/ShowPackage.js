@@ -3,11 +3,11 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 
-const ShowPackage = ({ trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, originCountry, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, destinationCountry, status, type, date, email }) => {
+const ShowPackage = ({ trackingnumber, description, length, height, width, weight, originZip, originCountry, destinationZip, destinationCountry, status, type, date, email }) => {
 
     return (
         <Fragment>
-            <Card style={{ width: '18rem', marginTop: '20px'}} className="text-center mx-auto">
+            <Card style={{ width: '18rem', marginTop: '20px' }} className="text-center mx-auto">
                 <Card.Header>
                     {trackingnumber}
                 </Card.Header>
@@ -17,8 +17,14 @@ const ShowPackage = ({ trackingnumber, description, length, height, width, weigh
                     </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                <ListGroupItem></ListGroupItem>
-                <ListGroupItem>
+                    <ListGroupItem></ListGroupItem>
+                    <ListGroupItem>
+                        Origin: {originZip} {originCountry}
+                    </ListGroupItem>
+                    <ListGroupItem>
+                        Destination: {destinationZip} {destinationCountry}
+                    </ListGroupItem>
+                    <ListGroupItem>
                         Length: {length}
                     </ListGroupItem>
                     <ListGroupItem>
@@ -37,12 +43,12 @@ const ShowPackage = ({ trackingnumber, description, length, height, width, weigh
                         Type: {type}
                     </ListGroupItem>
                     <ListGroupItem>
-                        Date: {date}
+                        Date: {date.replace('T', ' ').replace('Z', ' ').substring(0, date.length - 8)}
                     </ListGroupItem>
                     <ListGroupItem>
-                       Contact: {email}
+                        Contact: {email}
                     </ListGroupItem>
-                    </ListGroup>
+                </ListGroup>
                 <Card.Footer className="text-muted"><Card.Link href="/packages">Back to packages</Card.Link></Card.Footer>
             </Card>
         </Fragment>

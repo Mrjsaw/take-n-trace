@@ -86,7 +86,7 @@ app.get('/express_backend', (req, res) => {
 //GET all packages
 app.get('/getPackages', (req, res) => {
     connection.query(
-        'SELECT * FROM Packages',
+        'SELECT * FROM Packages ORDER BY date DESC',
         function (err, results) {
             if (err) {
                 res.send(err);
@@ -260,7 +260,7 @@ app.post('/getCourierById', (req, res) => {
 //GET courier reports
 app.post('/getCourierReports', (req, res) => {
     connection.query(
-        'SELECT * FROM Reports WHERE courierID = ?',
+        'SELECT * FROM Reports WHERE courierID = ? AND cast(date as Date) = cast(CURRENT_DATE() as Date) ORDER BY date DESC, trackingnumber',
         [req.body.courierid],
         function (err, results) {
             if (err) {
@@ -349,7 +349,6 @@ app.get('/getCountInternational', (req, res) => {
 });
 
 
-
 app.post('/sendMail', (req, res) => {
     const content = "<h1>Hello world</h1>";
     
@@ -383,4 +382,38 @@ app.post('/sendMail', (req, res) => {
         });
     })
 
+
+app.post('/getReportsByTrackingnumber', (req, res) => {
+    connection.query(
+        'SELECT * FROM Reports WHERE trackingnumber = ? ORDER BY date DESC',
+        [req.body.trackingnumber],
+        function (err, results) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
+});
+
+
+// GET all packages by trackingnumber and correct destination zip
+app.post('/getPackageByTrackingNumberAndZip', (req, res) => {
+    console.log('do i even get this')
+    connection.query(
+        'SELECT * FROM Packages WHERE trackingnumber = ? AND destinationZIp = ?',
+        [req.body.trackingnumber, req.body.destinationZip],
+        function (err, results) {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                console.log(results);
+                res.send(results);
+            }
+        }
+    );
 });
