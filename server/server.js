@@ -381,6 +381,7 @@ app.post('/sendMail', (req, res) => {
           email: emailMessage
         });
     })
+});
 
 
 app.post('/getReportsByTrackingnumber', (req, res) => {
