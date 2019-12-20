@@ -2,12 +2,12 @@ import React, { Component, useState, useRef, useEffect } from 'react';
 import OrderComponent from './OrderComponent.js';
 import  { Redirect } from 'react-router-dom';
 import Order from '../pages/Order.js';
+const axios = require('axios');
 
-function Product({ product }, {trackingnumber}) {
+function Product({ product }) {
     const [paidFor, setPaidFor] = useState(false);
     const [error, setError] = useState(null);
     const paypalRef = useRef();
-  
     useEffect(() => {
       window.paypal
         .Buttons({
@@ -18,7 +18,7 @@ function Product({ product }, {trackingnumber}) {
                   description: product.description,
                   amount: {
                     currency_code: 'USD',
-                    value: product.price,
+                    value: 1,
                   },
                 },
               ],
@@ -35,7 +35,7 @@ function Product({ product }, {trackingnumber}) {
           },
         })
         .render(paypalRef.current);
-    }, [product.description, product.price]);
+    }, [product.description, 30]);
   
     if (paidFor) {
       return (
@@ -50,7 +50,7 @@ function Product({ product }, {trackingnumber}) {
       <div>
         {error && <div>Uh oh, an error occurred! {error.message}</div>}
         <h1>
-          {product.description} for ${product.price}
+          {product.description} for ${20}
         </h1>
         <div ref={paypalRef} />
       </div>
@@ -62,25 +62,26 @@ function Product({ product }, {trackingnumber}) {
   // for the name we will use the package type
   // for the description we will use the description
   // we get this information from either the props or state
-  const product = {
-    price: 1,
-    name: 'een package',
-    description: 'dit is een heel mooie postpacket',
-    trackingnumber: false
-  };
 
 
 class Payment extends Component {
+  // TO DO - function to calculate price based on measurements
   constructor(props){
     super(props);
-}
+    this.state = {
+      data: ''
+    }
+  }
+
+  componentWillMount(){
+    this.setState({data: this.props.location.state.data});
+  }
+
 
   render() {
-    product.trackingnumber = this.props.location.state;
-    console.log(product);
     return (
       <div className="Payment">
-        <Product product={product} />
+        <Product product={this.state.data} />
       </div>
     );
   }
