@@ -1,4 +1,4 @@
-# Programming-project-2-take-n-trace-web
+# Take 'n Trace
 
 Connect to `EhB VPN` to make sure the website connects to the right back-end.
 
