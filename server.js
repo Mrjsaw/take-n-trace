@@ -8,6 +8,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
+const nodemailer = require("nodemailer");
 const port = process.env.PORT || 3010;
 
 const connection = mysql.createPool({
@@ -26,6 +27,13 @@ app.use(bodyParser.json());
 
 // enable all CORS requests
 app.use(cors());
+
+// accept CORS requests
+app.use((request, response, next) => {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
 
 // log HTTP requests
 app.use(morgan('combined'));
@@ -338,4 +346,41 @@ app.get('/getCountInternational', (req, res) => {
             }
         }
     );
+});
+
+
+
+app.post('/sendMail', (req, res) => {
+    const content = "<h1>Hello world</h1>";
+    
+    const transporter = nodemailer.createTransport({ 
+        host: 'smtp.ethereal.email',
+        sendmail: true, 
+        port: 25,
+        auth: {
+        user: 'dianna.satterfield@ethereal.email',
+        pass: 'vacT5m637DMKz49Th5'
+    }});
+
+    let mailOptions = {
+        from: 'Nodemailer Contact <dianna.satterfield@ethereal.email>',
+        to: 'tomasa.quitzon35@ethereal.email',
+        subject: 'Test',
+        text: 'Hello world',
+        html: content
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if(error){
+            emailMessage = "there was an error :-(, and it was this: " + error.message;
+        }else{
+            emailMessage = "Message sent: " + info.response;
+        }
+        console.log(emailMessage);
+        return res.json({
+          message: "success",
+          email: emailMessage
+        });
+    })
+
 });

@@ -15,13 +15,6 @@ it("Renders succesfully", () => {
     ReactDOM.render(<Form></Form>, div);
 });
 
-// Testing label generator
-it("Fromatted label correctly", function(){
-    const match = /^[A-Z]{3}[0-9]{10}$/;
-    expect(match.test(generateLabel('EXPRESS'))).toBe(true);
-}) // Returns true if label is formatted correctly, first 3 letters + 10 random numbers
-
-
 // Testing Input
 it('Capture email correctly onChange', function(){
     const component = mount(<Form />);
@@ -62,28 +55,4 @@ it('Email validation on correct value', function(){
     input.instance().value = email;
     input.simulate('change');
     expect(match.test(component.state().email)).toBe(true);
-});
-
-it('Email validation on incorrect value', function(){
-    const component = mount(<Form />);
-    // Returns first input component: email
-    const input = component.find('input').at(0);
-    const email = 'test@test@example.com'
-    const match = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    input.instance().value = email;
-    input.simulate('change');
-    expect(match.test(component.state().email)).toBe(false);
-});
-
-
-it('Email validation on incorrect value', function(){
-    const component = mount(<Form />);
-    // Returns first input component: email
-    const input = component.find('input').at(0);
-    const email = 'test@test@example.com'
-    const match = /^[a-zA-Z0-9_.]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-    input.instance().value = email;
-    input.simulate('change');
-    console.log(component.state().email);
-    expect(match.test(component.state().email)).toBe(false);
 });

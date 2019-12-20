@@ -150,14 +150,19 @@ class Form extends Component{
             width:  [this.state.width <= 300 && this.state.width > 0, "Width must be less or equal to 300 cm"],
             weight: [this.state.weight <= 75 && this.state.weight > 0, "Weight must be less or equal to 75 kilograms"],
             originName: [this.state.originName.length > 0 && match.test(this.state.originName), "The origin name should be valid (containing only letter)"],
-            destinationName: [this.state.destinationName.length > 0 && match.test(this.state.destinationNamex), "The destination name should be valid (containing only letter)"]
+            destinationName: [this.state.destinationName.length > 0 && match.test(this.state.destinationName), "The destination name should be valid (containing only letter)"]
         }
     }
     
 
     render(){
         const {trackingnumber, description, length, height, width, weight, originName, originStreet, originNumber, originZip, originCity, destinationName, destinationStreet, destinationNumber, destinationZip, destinationCity, email} = this.state;
-        const types = ["EXPRESS", "ECONOMY", "INTERNATONAL"];
+        const types = ["EXPRESS", "ECONOMY", "INTERNATIONAL"];
+        const countries = {
+            "EXPRESS": ["Belgium"],
+            "ECONOMY": ["Belgium", "France", "Germany", "Luxembourg", "Netherlands"],
+            "INTERNATIONAL": ["Belgium"]
+        }
         const redirect = this.state.redirect;
         const error = this.state.error;
 
@@ -172,7 +177,7 @@ class Form extends Component{
        if(redirect){
            return <Redirect to={{
             pathname: '/payment',
-            state: {trackingumber: this.state.trackingnumber}
+            state: {data: this.state}
         }} />;
        }
 
@@ -240,7 +245,7 @@ class Form extends Component{
                             <div className="col-xs-6">
                                 <label htmlFor="inputDestinationCountry">Country</label>
                                 <select name="destinationCountry" className="form-control" id="inputDestinationCountry">
-                                    <option>Belgium</option>
+                                    {!isUndefined(this.props.search) ? countries[this.props.search.type].map(value => <option>{value}</option>) : <div></div>}
                                 </select>
                             </div>
                             <div className="col-xs-6">

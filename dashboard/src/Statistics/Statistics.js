@@ -29,6 +29,7 @@ export default class extends Component {
         this.getData().then(values => {
             values.forEach(value => types.push(value));
         });
+        console.log(types);
         this.setState({packageData: {
             labels: ['Express', 'Economy', 'International'],
             datasets: [{
